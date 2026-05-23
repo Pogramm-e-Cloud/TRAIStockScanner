@@ -1,0 +1,43 @@
+{
+  "default_sound_enabled": true,
+  "default_vibration_enabled": true,
+  "volume_default": 0.75,
+  "alerts": {
+    "BUY_SIGNAL": {
+      "label_de": "Kaufsignal",
+      "sound": "soft_positive_ping",
+      "priority": "normal",
+      "vibration": "light"
+    },
+    "SELL_SIGNAL": {
+      "label_de": "Verkaufssignal",
+      "sound": "deep_warning_ping",
+      "priority": "normal",
+      "vibration": "medium"
+    },
+    "STOP_LOSS": {
+      "label_de": "Stop-Loss erreicht",
+      "sound": "strong_risk_alert",
+      "priority": "high",
+      "vibration": "strong"
+    },
+    "BREAKING_NEWS": {
+      "label_de": "Breaking News",
+      "sound": "news_flash_ping",
+      "priority": "high",
+      "vibration": "medium"
+    },
+    "SMART_MONEY": {
+      "label_de": "Smart Money erkannt",
+      "sound": "ai_signal_chime",
+      "priority": "normal",
+      "vibration": "light"
+    },
+    "DERIVATIVE_RISK": {
+      "label_de": "Derivate Risiko",
+      "sound": "risk_derivative_alert",
+      "priority": "high",
+      "vibration": "strong"
+    }
+  }
+}
