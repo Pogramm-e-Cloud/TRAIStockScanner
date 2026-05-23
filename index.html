@@ -184,5 +184,50 @@
   © 2026 TRAI Stock Scanner – Development Preview
 </footer>
 
-</body>
+<script src="frontendData.js"></script>
+
+<script>
+  function renderSignals() {
+    const signalBox = document.createElement("div");
+
+    signalBox.style.background = "#10182a";
+    signalBox.style.border = "1px solid #00ffcc";
+    signalBox.style.borderRadius = "20px";
+    signalBox.style.padding = "20px";
+    signalBox.style.margin = "40px";
+    signalBox.style.color = "white";
+
+    signalBox.innerHTML = `
+      <h2>KI Markt Scanner</h2>
+
+      <h3>Top Aktien LONG</h3>
+      ${traiDemoData.stocks.topLong.map(item => `
+        <p>${item.name} (${item.symbol}) - ${item.probability}%</p>
+      `).join("")}
+
+      <h3>Top Crypto LONG</h3>
+      ${traiDemoData.crypto.topLong.map(item => `
+        <p>${item.name} (${item.symbol}) - ${item.probability}%</p>
+      `).join("")}
+    `;
+
+    document.body.prepend(signalBox);
+  }
+const traiDemoData = {
+  stocks: {
+    topLong: [
+      { name: "NVIDIA", symbol: "NVDA", probability: 77 },
+      { name: "Amazon", symbol: "AMZN", probability: 63 }
+    ]
+  },
+
+  crypto: {
+    topLong: [
+      { name: "Bitcoin", symbol: "BTC", probability: 77 },
+      { name: "Ethereum", symbol: "ETH", probability: 72 }
+    ]
+  }
+};
+  renderSignals();
+</script></body>
 </html>
