@@ -1,109 +1,115 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<section style="position:relative;max-width:1200px;margin:-45px auto 40px auto;padding:0 20px;z-index:5;">
-  <div style="
-    background:rgba(17,24,39,0.88);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(0,230,118,0.35);
-    box-shadow:0 25px 80px rgba(0,230,118,0.15);
-    border-radius:28px;
-    padding:28px;
-  ">
-
-    <div style="text-align:center;margin-bottom:25px;">
-      <p style="color:#00E676;font-weight:bold;margin:0;">LIVE KI SCANNER</p>
-      <h2 style="font-size:34px;margin:8px 0;">Top Signale im Vordergrund</h2>
-      <p style="color:#A7B0C0;margin:0;">Aktien & Krypto · Long / Short · KI-Wahrscheinlichkeit</p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
-
-      <div style="background:#07150f;border:1px solid #00E676;border-radius:22px;padding:22px;">
-        <h3 style="color:#00E676;margin-top:0;">Top 3 LONG</h3>
-
-        <p><b>1. Bitcoin</b> · BTC<br>Wahrscheinlichkeit: <b>78%</b><br>Signal: Stark bullish</p>
-        <hr style="border-color:#1f2937;">
-        <p><b>2. NVIDIA</b> · NVDA<br>Wahrscheinlichkeit: <b>74%</b><br>Signal: KI Momentum</p>
-        <hr style="border-color:#1f2937;">
-        <p><b>3. Ethereum</b> · ETH<br>Wahrscheinlichkeit: <b>71%</b><br>Signal: Volumen steigt</p>
-      </div>
-
-      <div style="background:#1a0b0b;border:1px solid #ff5252;border-radius:22px;padding:22px;">
-        <h3 style="color:#ff5252;margin-top:0;">Top 3 SHORT</h3>
-
-        <p><b>1. Tesla</b> · TSLA<br>Wahrscheinlichkeit: <b>69%</b><br>Signal: Schwaches Volumen</p>
-        <hr style="border-color:#1f2937;">
-        <p><b>2. Solana</b> · SOL<br>Wahrscheinlichkeit: <b>66%</b><br>Signal: Überkauft</p>
-        <hr style="border-color:#1f2937;">
-        <p><b>3. Amazon</b> · AMZN<br>Wahrscheinlichkeit: <b>61%</b><br>Signal: Widerstand aktiv</p>
-      </div>
-
-    </div>
-
-    <p style="text-align:center;color:#7d8797;margin-top:20px;font-size:14px;">
-      Demo-Anzeige · Später automatisch verbunden mit Live APIs, CoinGecko, Binance, Finnhub und KI Analyse.
-    </p>
-  </div>
-</section>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TRAI Stock Scanner</title>
+
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #080B12;
+      background: #070b14;
       color: white;
     }
+
     header {
-      padding: 60px 20px;
+      padding: 70px 20px;
       text-align: center;
       background: linear-gradient(135deg, #061018, #102033, #0b3d2e);
     }
+
     h1 {
-      font-size: 42px;
+      font-size: 46px;
       margin-bottom: 10px;
     }
-    p {
-      color: #A7B0C0;
-      font-size: 18px;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
     }
+
+    p {
+      color: #b8c0cc;
+      font-size: 17px;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 45px 20px;
+    }
+
     .button {
       display: inline-block;
       margin-top: 25px;
       padding: 14px 26px;
-      background: #00E676;
-      color: #04100A;
+      background: #00e676;
+      color: #04100a;
       text-decoration: none;
       border-radius: 12px;
       font-weight: bold;
     }
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 18px;
     }
+
     .card {
       background: #111827;
       padding: 22px;
       border-radius: 18px;
       border: 1px solid #1f2937;
     }
+
     .card h3 {
       margin-top: 0;
-      color: #00E676;
+      color: #00e676;
     }
+
+    .ai-panel {
+      margin-top: -45px;
+      background: rgba(17, 24, 39, 0.92);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 230, 118, 0.35);
+      box-shadow: 0 25px 80px rgba(0, 230, 118, 0.15);
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .long {
+      background: #07150f;
+      border: 1px solid #00e676;
+    }
+
+    .short {
+      background: #1a0b0b;
+      border: 1px solid #ff5252;
+    }
+
+    .long h3 {
+      color: #00e676;
+    }
+
+    .short h3 {
+      color: #ff5252;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 22px;
+      margin: 20px 0;
+      border: 1px solid #1f2937;
+    }
+
     .warning {
       background: #1f1616;
       border: 1px solid #ff5252;
       color: #ffdede;
     }
+
     footer {
       text-align: center;
       padding: 30px;
@@ -112,29 +118,66 @@
     }
   </style>
 </head>
+
 <body>
 
 <header>
   <h1>TRAI Stock Scanner</h1>
-  <p>KI-gestützte Aktienanalyse, Charttechnik, Derivate-Rechner und Community-Plattform.</p>
-  <a class="button" href="#features">Funktionen ansehen</a>
+  <p>KI-gestützte Aktienanalyse, Krypto-Scanner, Derivate-Rechner und Community-Plattform.</p>
+  <a class="button" href="#scanner">KI Scanner ansehen</a>
 </header>
 
-<section id="features">
+<section id="scanner">
+  <div class="ai-panel">
+    <div style="text-align:center;margin-bottom:25px;">
+      <p style="color:#00e676;font-weight:bold;margin:0;">LIVE KI SCANNER</p>
+      <h2>Top Signale im Vordergrund</h2>
+      <p>Aktien & Krypto · Long / Short · KI-Wahrscheinlichkeit</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card long">
+        <h3>Top 3 LONG</h3>
+        <div id="longSignals"></div>
+      </div>
+
+      <div class="card short">
+        <h3>Top 3 SHORT</h3>
+        <div id="shortSignals"></div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;color:#7d8797;margin-top:20px;font-size:14px;">
+      Demo-Anzeige · Später verbunden mit Live APIs, CoinGecko, Binance, Finnhub und KI Analyse.
+    </p>
+  </div>
+</section>
+
+<section>
   <h2>Funktionen</h2>
   <div class="grid">
     <div class="card">
       <h3>KI Aktienanalyse</h3>
-      <p>Top 3 Kauf- und Verkaufssignale mit Charttechnik, News und Smart-Money-Daten.</p>
+      <p>Top Kauf- und Verkaufssignale mit Charttechnik, News und Volumenbewertung.</p>
     </div>
+
+    <div class="card">
+      <h3>Krypto Scanner</h3>
+      <p>Bitcoin, Ethereum, Solana und weitere Coins mit Long- und Short-Auswertung.</p>
+    </div>
+
     <div class="card">
       <h3>Derivate Rechner</h3>
       <p>Berechnung von Einstieg, Ausstieg, Stop-Loss, Take-Profit, Risiko und Hebel.</p>
     </div>
+
     <div class="card">
       <h3>Warnsystem</h3>
       <p>Sound- und Push-Warnungen für Signale, Stop-Loss, News und Risikoereignisse.</p>
     </div>
+
     <div class="card">
       <h3>Community</h3>
       <p>Community-Chat, Premium-Zugang und Unterstützerbereich vorbereitet.</p>
@@ -154,6 +197,18 @@
 </section>
 
 <section>
+  <h2>TRAI Vorschau</h2>
+
+  <img src="TRAI%20images/TRAI_Logo.png" alt="TRAI Logo" style="width:220px;display:block;margin:auto;">
+
+  <img src="TRAI%20images/TRAI_UI_Mockup.png" alt="TRAI UI Mockup">
+
+  <img src="TRAI%20images/TRAI_Plattform_Versionen.png" alt="TRAI Plattform Versionen">
+
+  <img src="TRAI%20images/TRAI_Infografik.png" alt="TRAI Infografik">
+</section>
+
+<section>
   <h2>Sicherheit</h2>
   <div class="card">
     <p>Firebase Login, Firestore Datenbank, API-Fallback-System und geschützte Backend-Struktur sind vorbereitet.</p>
@@ -163,88 +218,80 @@
 <section>
   <div class="card warning">
     <h3>Wichtiger Hinweis</h3>
-    <p>Diese Plattform dient ausschließlich Analyse- und Informationszwecken. Keine Finanzberatung. Trading und Derivate können zum Totalverlust führen.</p>
+    <p>Diese Plattform dient ausschließlich Analyse- und Informationszwecken. Keine Finanzberatung. Trading, Aktien, Krypto und Derivate können zum Totalverlust führen.</p>
   </div>
-</section> 
- <h2>TRAI Vorschau</h2>
-
-  <img src="TRAI%20images/TRAI_Bilder/TRAI_Logo.png"
-       style="width:200px;border-radius:20px;margin:20px;">
-
-  <img src="TRAI%20images/TRAI_Bilder/TRAI_UI_Mockup.png"
-       style="width:90%;border-radius:20px;margin:20px;">
-
-  <img src="TRAI%20images/TRAI_Bilder/TRAI_Plattform_Versionen.png"
-       style="width:90%;border-radius:20px;margin:20px;">
-
-  <img src="TRAI%20images/TRAI_Bilder/TRAI_Infografik.png"
-       style="width:90%;border-radius:20px;margin:20px;">
 </section>
+
 <footer>
   © 2026 TRAI Stock Scanner – Development Preview
 </footer>
 
-<script src="frontendData.js"></script>
-
 <script>
+  const traiDemoData = {
+    stocks: {
+      topLong: [
+        { name: "NVIDIA", symbol: "NVDA", probability: 77 },
+        { name: "Amazon", symbol: "AMZN", probability: 63 },
+        { name: "Apple", symbol: "AAPL", probability: 61 }
+      ],
+      topShort: [
+        { name: "Tesla", symbol: "TSLA", probability: 36 },
+        { name: "Meta", symbol: "META", probability: 39 },
+        { name: "Netflix", symbol: "NFLX", probability: 40 }
+      ]
+    },
+
+    crypto: {
+      topLong: [
+        { name: "Bitcoin", symbol: "BTC", probability: 77 },
+        { name: "Ethereum", symbol: "ETH", probability: 72 },
+        { name: "BNB", symbol: "BNB", probability: 66 }
+      ],
+      topShort: [
+        { name: "Solana", symbol: "SOL", probability: 38 },
+        { name: "XRP", symbol: "XRP", probability: 41 },
+        { name: "Dogecoin", symbol: "DOGE", probability: 43 }
+      ]
+    }
+  };
+
   function renderSignals() {
-    const signalBox = document.createElement("div");
+    const longSignals = document.getElementById("longSignals");
+    const shortSignals = document.getElementById("shortSignals");
 
-    signalBox.style.background = "#10182a";
-    signalBox.style.border = "1px solid #00ffcc";
-    signalBox.style.borderRadius = "20px";
-    signalBox.style.padding = "20px";
-    signalBox.style.margin = "40px";
-    signalBox.style.color = "white";
+    const allLong = [
+      ...traiDemoData.stocks.topLong.map(item => ({ ...item, type: "Aktie" })),
+      ...traiDemoData.crypto.topLong.map(item => ({ ...item, type: "Krypto" }))
+    ].sort((a, b) => b.probability - a.probability).slice(0, 3);
 
-    signalBox.innerHTML = `
-      <h2>KI Markt Scanner</h2>
+    const allShort = [
+      ...traiDemoData.stocks.topShort.map(item => ({ ...item, type: "Aktie" })),
+      ...traiDemoData.crypto.topShort.map(item => ({ ...item, type: "Krypto" }))
+    ].sort((a, b) => a.probability - b.probability).slice(0, 3);
 
-      <h3>Top Aktien LONG</h3>
-      ${traiDemoData.stocks.topLong.map(item => `
-        <p>${item.name} (${item.symbol}) - ${item.probability}%</p>
-      `).join("")}
+    longSignals.innerHTML = allLong.map((item, index) => `
+      <p>
+        <b>${index + 1}. ${item.name}</b> · ${item.symbol}<br>
+        Markt: ${item.type}<br>
+        Wahrscheinlichkeit: <b>${item.probability}%</b><br>
+        Signal: LONG
+      </p>
+      <hr style="border-color:#1f2937;">
+    `).join("");
 
-      <h3>Top Crypto LONG</h3>
-      const traiDemoData = {
-  stocks: {
-    topLong: [
-      { name: "NVIDIA", symbol: "NVDA", probability: 77 },
-      { name: "Amazon", symbol: "AMZN", probability: 63 }
-    ],
-    topShort: [
-      { name: "Tesla", symbol: "TSLA", probability: 36 }
-    ]
-  },
-
-  crypto: {
-    topLong: [
-      { name: "Bitcoin", symbol: "BTC", probability: 77 },
-      { name: "Ethereum", symbol: "ETH", probability: 72 }
-    ],
-    topShort: [
-      { name: "Solana", symbol: "SOL", probability: 38 }
-    ]
+    shortSignals.innerHTML = allShort.map((item, index) => `
+      <p>
+        <b>${index + 1}. ${item.name}</b> · ${item.symbol}<br>
+        Markt: ${item.type}<br>
+        Wahrscheinlichkeit: <b>${item.probability}%</b><br>
+        Signal: SHORT
+      </p>
+      <hr style="border-color:#1f2937;">
+    `).join("");
   }
-};
 
-    document.body.prepend(signalBox);
-  }
-const traiDemoData = {
-  stocks: {
-    topLong: [
-      { name: "NVIDIA", symbol: "NVDA", probability: 77 },
-      { name: "Amazon", symbol: "AMZN", probability: 63 }
-    ]
-  },
-
-  crypto: {
-    topLong: [
-      { name: "Bitcoin", symbol: "BTC", probability: 77 },
-      { name: "Ethereum", symbol: "ETH", probability: 72 }
-    ]
-  }
-};
   renderSignals();
-</script></body>
+</script>
+
+</body>
 </html>
