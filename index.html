@@ -4,193 +4,1115 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TRAI Scanner</title>
-  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
   <style>
-    body{margin:0;background:#0b0f19;color:white;font-family:Arial}
-    header{padding:20px;display:flex;justify-content:space-between;align-items:center;background:#111827}
-    .logo{font-size:28px;font-weight:bold;color:#22c55e}
-    select,button,input{padding:10px;border-radius:8px;border:none}
-    button{background:#22c55e;color:white;font-weight:bold;cursor:pointer}
-    section{padding:40px 20px;max-width:1200px;margin:auto}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-    .card{background:#151b2b;border:1px solid #263249;border-radius:16px;padding:20px}
-    .long{border-color:#22c55e}
-    .short{border-color:#ef4444}
-    .chart-box{height:350px;background:#111827;border-radius:16px;margin-top:20px}
-    .ad-box{display:none;background:#1f2937;padding:30px;text-align:center;border-radius:16px;margin:30px 0}
-    .hidden{display:none}
-    .warning{font-size:13px;color:#aaa;margin-top:20px}
-  </style>
+    :root {
+      --bg: #070b14;
+      --panel: #111827;
+      --card: #151b2b;
+      --card2: #0d1322;
+      --line: #263249;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --gold: #f59e0b;
+      --text: #ffffff;
+      --muted: #a7b0c0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(17, 24, 39, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1250px;
+      margin: auto;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      margin: 0;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: 0.5px;
+    }
+
+    select,
+    button,
+    input {
+      padding: 11px 13px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0b1220;
+      color: white;
+      font-size: 14px;
+    }
+
+    button {
+      background: var(--green);
+      color: #04100a;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+    }
+
+    button.secondary {
+      background: #1f2937;
+      color: white;
+      border: 1px solid var(--line);
+    }
+
+    button.danger {
+      background: var(--red);
+      color: white;
+    }
+
+    button.blue {
+      background: var(--blue);
+      color: white;
+    }
+
+    section {
+      padding: 46px 18px;
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    .hero {
+      max-width: none;
+      padding: 80px 18px 90px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top left, rgba(34, 197, 94, 0.20), transparent 35%),
+        radial-gradient(circle at top right, rgba(239, 68, 68, 0.16), transparent 35%),
+        linear-gradient(135deg, #07111f, #070b14 70%);
+    }
+
+    .hero-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      margin: 0 0 14px;
+      line-height: 1.05;
+    }
+
+    h2 {
+      font-size: clamp(28px, 3vw, 38px);
+      margin: 0 0 22px;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.58;
+    }
+
+    .hero-logo {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .long {
+      border-color: rgba(34, 197, 94, 0.75);
+    }
+
+    .short {
+      border-color: rgba(239, 68, 68, 0.75);
+    }
+
+    .long h3 {
+      color: var(--green);
+    }
+
+    .short h3 {
+      color: var(--red);
+    }
+
+    .ai-panel {
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      box-shadow: 0 25px 80px rgba(34, 197, 94, 0.13);
+      border-radius: 28px;
+      padding: 26px;
+    }
+
+    .scanner-page {
+      display: none;
+      padding-top: 35px;
+    }
+
+    .scanner-page.active {
+      display: block;
+    }
+
+    .ad-box {
+      background: #172033;
+      border: 1px dashed var(--gold);
+      padding: 20px;
+      border-radius: 16px;
+      margin: 18px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .chart-wrap {
+      background: var(--card2);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 15px;
+    }
+
+    canvas {
+      width: 100%;
+      height: 390px;
+      background: #101827;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .community-layout {
+      display: grid;
+      grid-template-columns: 430px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .chat-panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      max-width: 430px;
+      min-height: 360px;
+      width: 100%;
+    }
+
+    .community-side {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 360px;
+    }
+
+    .chat-box {
+      min-height: 170px;
+      max-height: 260px;
+      overflow: auto;
+      background: var(--card2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+
+    .chat-form {
+      display: grid;
+      grid-template-columns: 95px 1fr;
+      gap: 8px;
+    }
+
+    .chat-form button {
+      grid-column: 1 / -1;
+    }
+
+    .msg {
+      padding: 9px 10px;
+      margin: 8px 0;
+      background: #172033;
+      border-radius: 10px;
+    }
+
+    .warning {
+      background: #211616;
+      border-color: #ff5252;
+      color: #ffdede;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      margin: 18px 0;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 18px;
+      color: #7d8797;
+      border-top: 1px solid var(--line);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      margin: 4px;
+      background: #101827;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .brand {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .toolbar button {
+        width: 100%;
+      }
+
+      canvas {
+        height: 300px;
+      }
+
+      .community-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-panel {
+        max-width: 100%;
+      }
+
+      .chat-form {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+
+
+
+.site-footer{
+  text-align:center;
+  padding:22px 18px 34px;
+  color:#7d8797;
+  border-top:1px solid #263249;
+  font-size:12px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+
+.footer-links button{
+  background:transparent;
+  border:none;
+  color:#9ca3af;
+  font-size:12px;
+  padding:3px 6px;
+  cursor:pointer;
+  font-weight:normal;
+}
+
+.footer-links button:hover{
+  color:#22c55e;
+  text-decoration:underline;
+}
+
+.legal-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.72);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.legal-content{
+  width:90%;
+  max-width:560px;
+  background:#111827;
+  border:1px solid #374151;
+  border-radius:18px;
+  padding:24px;
+  position:relative;
+}
+
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#1f2937;
+  color:white;
+}
+
+.legal-page{
+  color:white;
+}
+
+.hidden{
+  display:none !important;
+}
+
+
+.hero-logo-wrap{
+  display:flex;
+  justify-content:center;
+  margin-bottom:22px;
+}
+
+.hero-logo{
+  width:260px;
+  max-width:90%;
+  border-radius:18px;
+  box-shadow:0 0 30px rgba(34,197,94,.2);
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">TRAI Scanner</div>
-  <select id="languageSelect">
-    <option value="de">Deutsch</option>
-    <option value="en">English</option>
-    <option value="tr">Türkçe</option>
-    <option value="es">Español</option>
-    <option value="fr">Français</option>
-    <option value="it">Italiano</option>
-    <option value="sq">Shqip</option>
-  </select>
+  <div class="nav">
+    <div class="brand">
+      <!-- Eigenes Bull/Bear Logo später unter diesem Namen hochladen -->
+      <img src="TRAI%20images/TRAI_Bull_Bear_Logo.png" alt="TRAI Logo" onerror="this.style.display='none'">
+      <div class="logo">TRAI Scanner</div>
+    </div>
+
+    <div>
+      <select id="languageSelect">
+        <option value="de">Deutsch</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="it">Italiano</option>
+        <option value="sq">Shqip</option>
+        <option value="ar">العربية</option>
+      </select>
+      <button class="secondary" onclick="scrollToId('home')">Home</button>
+      <button class="secondary" onclick="openScannerFlow()">Scanner</button>
+      <button class="secondary" onclick="scrollToId('chart')">Chart</button>
+      <button class="secondary" onclick="scrollToId('community')">Chat</button>
+    </div>
+  </div>
 </header>
 
-<section>
-  <h1 data-i18n="title">TRAI Stock & Crypto Scanner</h1>
-  <p data-i18n="subtitle">KI-gestützte Analyse für Aktien und Kryptowährungen.</p>
+<section id="home" class="hero">
+  <div class="hero-inner">
+    <div>
+      <p style="color:var(--green);font-weight:bold;margin:0 0 8px;">KI · Aktien · Krypto · Derivate · Community</p>
+      <h1 data-i18n="title">TRAI Stock & Crypto Scanner</h1>
+      <p data-i18n="subtitle">Eigene KI-Analyse, eigene Chart-Technik, Scanner, Derivate-Rechner und Community.</p>
 
-  <button onclick="openScanner()">KI Scanner öffnen</button>
+      <div style="margin-top:24px;">
+        <button onclick="openScannerFlow()">KI Scanner öffnen</button>
+        <button class="secondary" onclick="scrollToId('chart')">Eigenen Chart öffnen</button>
+        <button class="secondary" onclick="scrollToId('community')">Community</button>
+      </div>
 
-  <div id="adScreen" class="ad-box">
-    <h2>Anzeige</h2>
-    <p>Werbung wird hier eingeblendet.</p>
-    <button onclick="continueToScanner()">Weiter zum Scanner</button>
+      <div style="margin-top:24px;">
+        <span class="pill">Eigene Chart Engine</span>
+        <span class="pill">Google Werbung vor KI Analyse</span>
+        <span class="pill">Android/iOS vorbereitet</span>
+        <span class="pill">Admin: ?admin=1</span>
+      </div>
+    </div>
+
+    <div>
+      <img class="hero-logo" src="TRAI%20images/TRAI_Bull_Bear_Logo.png" alt="TRAI Bull Bear Logo" onerror="this.src='TRAI%20images/TRAI_Logo.png'">
+    </div>
   </div>
 </section>
 
-<section id="scannerSection" class="hidden">
-
-  <h2>Crypto Scanner</h2>
-  <div class="grid">
-    <div class="card long">
-      <h3>Top 3 LONG Crypto</h3>
-      <p>1. Bitcoin BTC — 78%</p>
-      <p>2. Ethereum ETH — 74%</p>
-      <p>3. Solana SOL — 69%</p>
-    </div>
-    <div class="card short">
-      <h3>Top 3 SHORT Crypto</h3>
-      <p>1. Dogecoin DOGE — 41%</p>
-      <p>2. XRP — 39%</p>
-      <p>3. Cardano ADA — 37%</p>
+<section id="scannerIntro">
+  <div class="ai-panel">
+    <div style="text-align:center;">
+      <p style="color:var(--green);font-weight:bold;margin:0;">LIVE KI SCANNER</p>
+      <h2>Analyse erst nach Klick sichtbar</h2>
+      <p>Die LONG/SHORT Analyse erscheint erst, wenn der Nutzer den KI Scanner öffnet. Vor der KI-Ausgabe kann Google-Werbung oder ein AI Partner Insight erscheinen.</p>
+      <button onclick="openScannerFlow()">KI Scanner öffnen</button>
     </div>
   </div>
-
-  <h2>Aktien Scanner</h2>
-  <div class="grid">
-    <div class="card long">
-      <h3>Top 3 LONG Aktien</h3>
-      <p>1. NVIDIA NVDA — 77%</p>
-      <p>2. Apple AAPL — 72%</p>
-      <p>3. Microsoft MSFT — 70%</p>
-    </div>
-    <div class="card short">
-      <h3>Top 3 SHORT Aktien</h3>
-      <p>1. Tesla TSLA — 38%</p>
-      <p>2. Meta META — 36%</p>
-      <p>3. Netflix NFLX — 35%</p>
-    </div>
-  </div>
-
 </section>
 
-<section>
-  <h2>Analyse Charts</h2>
-  <p>2 Charts kostenlos. Ab dem 3. Chart erscheint Werbung.</p>
+<section id="scannerPage" class="scanner-page">
+  <div class="ai-panel">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;">
+      <div>
+        <p style="color:var(--green);font-weight:bold;margin:0;">LIVE KI SCANNER</p>
+        <h2>Top Signale im Vordergrund</h2>
+        <p>Aktien & Krypto · Long / Short · KI-Wahrscheinlichkeit</p>
+      </div>
+      <button class="secondary" onclick="closeScanner()">Scanner schließen</button>
+    </div>
 
-  <button onclick="createChart()">Chart öffnen</button>
+    <div id="scannerAd" class="ad-box hidden">
+      <b>Anzeige · AI Partner Insight</b>
+      <p>Hier kann später Google AdSense oder ein Partner-Hinweis erscheinen. Erst danach wird die KI Analyse freigeschaltet.</p>
+      <button onclick="showScannerResults()">Weiter zur KI Analyse</button>
+    </div>
 
-  <div id="chartAd" class="ad-box">
-    <h2>Anzeige</h2>
-    <p>Ab dem 3. Chart wird Werbung angezeigt.</p>
+    <div id="scannerResults" class="hidden">
+      <div class="grid">
+        <div class="card long">
+          <h3>Top 3 LONG</h3>
+          <div id="longSignals"></div>
+        </div>
+        <div class="card short">
+          <h3>Top 3 SHORT</h3>
+          <div id="shortSignals"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chart">
+  <h2>Eigener TRAI Chart</h2>
+  <p>Eigene Canvas-Chart-Engine mit eigenen Candles, eigener Toolbar und eigenen Werkzeugen. Keine TradingView/stock3 Kopie.</p>
+
+  <div class="toolbar">
+    <button onclick="openChart()">Chart öffnen</button>
+    <button class="secondary" onclick="setTool('trendline')">Trendlinie</button>
+    <button class="secondary" onclick="setTool('support')">Support</button>
+    <button class="secondary" onclick="setTool('resistance')">Resistance</button>
+    <button class="secondary" onclick="setTool('zone')">Zone</button>
+    <button class="secondary" onclick="setTool('note')">Notiz</button>
+    <button class="secondary" onclick="setTool('measure')">Messung</button>
+    <button class="blue" onclick="analyzeChartAI()">Chart-KI</button>
+    <button class="secondary" onclick="saveChart()">Speichern</button>
+    <button class="secondary" onclick="window.print()">Drucken</button>
+    <button class="danger" onclick="clearDrawings()">Löschen</button>
+  </div>
+
+  <div id="chartAd" class="ad-box hidden">
+    <b>Anzeige</b>
+    <p>Ab dem 3. Chart kann hier Werbung erscheinen. Admin/Premium ist werbefrei.</p>
     <button onclick="unlockChart()">Chart freischalten</button>
   </div>
 
-  <div id="charts"></div>
+  <div class="chart-wrap">
+    <canvas id="traiChart" width="1100" height="420"></canvas>
+    <p id="activeTool">Aktives Tool: keines</p>
+    <p style="font-size:14px;color:var(--muted);">Tool auswählen, dann im Chart klicken. Demo: Linie wird gezeichnet. Später: Startpunkt + Endpunkt per Maus/Touch.</p>
+    <div id="chartAIResult" class="card hidden"></div>
+  </div>
 </section>
 
 <section>
-  <h2>Login vorbereitet</h2>
-  <div class="card">
-    <input id="email" placeholder="E-Mail" />
-    <input id="password" type="password" placeholder="Passwort" />
-    <button>Login mit Supabase später aktivieren</button>
+  <h2>Derivate Rechner</h2>
+  <div class="grid">
+    <div class="card">
+      <input id="stockPrice" type="number" placeholder="Aktienkurs z.B. 100">
+      <input id="derivativePrice" type="number" placeholder="Derivat Preis z.B. 2.50">
+      <input id="leverage" type="number" placeholder="Hebel z.B. 5">
+      <button onclick="calculateDerivative()">Berechnen</button>
+      <p id="derivativeResult"></p>
+    </div>
+    <div class="card">
+      <h3>Vorbereitet</h3>
+      <p>Euro/USD, Hebel, Risiko, Stop-Loss, Take-Profit und KI-Vorschläge vorbereitet.</p>
+    </div>
   </div>
-
-  <p class="warning">
-    Hinweis: Alle Inhalte dienen nur Informationszwecken und sind keine Finanzberatung.
-    TRAI verwendet eigene Analysen, eigene Scanner und legale Open-Source-Charts.
-  </p>
 </section>
 
+<section id="community">
+  <h2>Kostenloser TRAI Community Chat</h2>
+  <p>Community-Chat mit Schimpfwortschutz, Spamlink-Schutz und integrierter Werbung.</p>
+
+  <div class="community-layout">
+    <div class="chat-panel">
+      <div id="chatBox" class="chat-box"></div>
+
+      <div id="chatAd" class="ad-box hidden">
+        <b>Anzeige · Community Partner Insight</b>
+        <p>Kleine Anzeige im Chatbereich. Keine Popups, keine Fake-Buttons.</p>
+      </div>
+
+      <div class="chat-form">
+        <input id="chatName" placeholder="Name" value="Gast">
+        <input id="chatInput" placeholder="Nachricht schreiben...">
+        <button onclick="sendChat()">Senden</button>
+      </div>
+
+      <p id="chatWarning" style="color:var(--red)"></p>
+    </div>
+
+    <div class="community-side">
+      <h3>Community Übersicht</h3>
+      <p>Rechts bleibt Platz für Werbung, Top Signale, News, Trending Coins oder aktive Trader.</p>
+      <div class="ad-box">
+        <b>Anzeige · Google Platzhalter</b>
+        <p>Später kann hier eine Google Anzeige erscheinen.</p>
+      </div>
+      <p><b>Trending:</b> BTC · ETH · NVDA · TSLA</p>
+      <p><b>Status:</b> Community Demo aktiv</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Watchlist & Speicherung</h2>
+  <div class="card">
+    <input id="watchInput" placeholder="Symbol hinzufügen z.B. BTC oder NVDA">
+    <button onclick="addWatch()">Zur Watchlist</button>
+    <div id="watchList" style="margin-top:12px;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>TRAI Vorschau</h2>
+  <p>Hier werden deine Originalbilder aus GitHub eingebunden. Die Pfade müssen exakt stimmen.</p>
+
+  <div class="preview-grid">
+    <img src="TRAI%20images/TRAI_Logo.png" alt="TRAI Logo">
+    <div>
+      <img src="TRAI%20images/TRAI_UI_Mockup.png" alt="TRAI UI Mockup">
+      <img src="TRAI%20images/TRAI_Plattform_Versionen.png" alt="TRAI Plattform Versionen">
+      <img src="TRAI%20images/TRAI_Infografik.png" alt="TRAI Infografik">
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Mobile & App Vorbereitung</h2>
+  <div class="grid">
+    <div class="card">Android vorbereitet</div>
+    <div class="card">iPhone / iOS vorbereitet</div>
+    <div class="card">PWA vorbereitet</div>
+    <div class="card">Windows & macOS vorbereitet</div>
+  </div>
+</section>
+
+<section>
+  <div class="card warning">
+    <h3>Wichtiger Hinweis</h3>
+    <p>Keine Finanzberatung. Nur Informations- und Analysezwecke. Aktien, Krypto und Derivate können zum Totalverlust führen.</p>
+  </div>
+</section>
+
+
+
+
+
+
+
 <script>
-const isAdmin = new URLSearchParams(window.location.search).get("admin") === "1";
-let chartCount = Number(localStorage.getItem("chartCount") || 0);
+  const isAdmin = new URLSearchParams(window.location.search).get("admin") === "1";
+  const isPremium = false;
 
-function openScanner(){
-  if(isAdmin){
-    document.getElementById("scannerSection").classList.remove("hidden");
-    return;
+  let scanCount = Number(localStorage.getItem("scanCount") || 0);
+  let chartCount = Number(localStorage.getItem("chartCount") || 0);
+  let chatCount = Number(localStorage.getItem("chatCount") || 0);
+  let activeTool = null;
+  let drawings = [];
+
+  const blockedWords = ["idiot", "arsch", "hurensohn", "spast", "scamlink", "betruglink"];
+
+  const data = {
+    stocks: {
+      topLong: [
+        { name: "NVIDIA", symbol: "NVDA", probability: 77 },
+        { name: "Apple", symbol: "AAPL", probability: 72 },
+        { name: "Microsoft", symbol: "MSFT", probability: 70 }
+      ],
+      topShort: [
+        { name: "Tesla", symbol: "TSLA", probability: 38 },
+        { name: "Meta", symbol: "META", probability: 36 },
+        { name: "Netflix", symbol: "NFLX", probability: 35 }
+      ]
+    },
+    crypto: {
+      topLong: [
+        { name: "Bitcoin", symbol: "BTC", probability: 78 },
+        { name: "Ethereum", symbol: "ETH", probability: 74 },
+        { name: "Solana", symbol: "SOL", probability: 69 }
+      ],
+      topShort: [
+        { name: "Dogecoin", symbol: "DOGE", probability: 41 },
+        { name: "XRP", symbol: "XRP", probability: 39 },
+        { name: "Cardano", symbol: "ADA", probability: 37 }
+      ]
+    }
+  };
+
+  function scrollToId(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }
-  document.getElementById("adScreen").style.display = "block";
-}
 
-function continueToScanner(){
-  document.getElementById("adScreen").style.display = "none";
-  document.getElementById("scannerSection").classList.remove("hidden");
-}
-
-function createChart(){
-  chartCount++;
-  localStorage.setItem("chartCount", chartCount);
-
-  if(chartCount > 2 && !isAdmin){
-    document.getElementById("chartAd").style.display = "block";
-    return;
+  function hideAd(id) {
+    document.getElementById(id).classList.add("hidden");
   }
 
-  renderChart();
-}
+  function openScannerFlow() {
+    scanCount++;
+    localStorage.setItem("scanCount", scanCount);
 
-function unlockChart(){
-  document.getElementById("chartAd").style.display = "none";
-  renderChart();
-}
+    document.getElementById("scannerPage").classList.add("active");
+    document.getElementById("scannerResults").classList.add("hidden");
 
-function renderChart(){
-  const box = document.createElement("div");
-  box.className = "chart-box";
-  document.getElementById("charts").appendChild(box);
+    if (isAdmin || isPremium) {
+      showScannerResults();
+    } else {
+      document.getElementById("scannerAd").classList.remove("hidden");
+    }
 
-  const chart = LightweightCharts.createChart(box, {
-    layout:{background:{color:"#111827"},textColor:"#ffffff"},
-    grid:{vertLines:{color:"#1f2937"},horzLines:{color:"#1f2937"}}
+    scrollToId("scannerPage");
+  }
+
+  function showScannerResults() {
+    document.getElementById("scannerAd").classList.add("hidden");
+    document.getElementById("scannerResults").classList.remove("hidden");
+    renderSignals();
+  }
+
+  function closeScanner() {
+    document.getElementById("scannerPage").classList.remove("active");
+    scrollToId("home");
+  }
+
+  function renderSignals() {
+    const longs = [
+      ...data.stocks.topLong.map(x => ({ ...x, type: "Aktie" })),
+      ...data.crypto.topLong.map(x => ({ ...x, type: "Krypto" }))
+    ].sort((a, b) => b.probability - a.probability).slice(0, 3);
+
+    const shorts = [
+      ...data.stocks.topShort.map(x => ({ ...x, type: "Aktie" })),
+      ...data.crypto.topShort.map(x => ({ ...x, type: "Krypto" }))
+    ].sort((a, b) => a.probability - b.probability).slice(0, 3);
+
+    document.getElementById("longSignals").innerHTML = longs.map((x, i) => `
+      <p>
+        <b>${i + 1}. ${x.name}</b> · ${x.symbol}<br>
+        Markt: ${x.type}<br>
+        Wahrscheinlichkeit: <b>${x.probability}%</b><br>
+        Signal: LONG
+      </p>
+      <hr>
+    `).join("");
+
+    document.getElementById("shortSignals").innerHTML = shorts.map((x, i) => `
+      <p>
+        <b>${i + 1}. ${x.name}</b> · ${x.symbol}<br>
+        Markt: ${x.type}<br>
+        Wahrscheinlichkeit: <b>${x.probability}%</b><br>
+        Signal: SHORT
+      </p>
+      <hr>
+    `).join("");
+  }
+
+  function openChart() {
+    chartCount++;
+    localStorage.setItem("chartCount", chartCount);
+
+    if (chartCount > 2 && !isAdmin && !isPremium) {
+      document.getElementById("chartAd").classList.remove("hidden");
+      scrollToId("chart");
+      return;
+    }
+
+    drawChart();
+    scrollToId("chart");
+  }
+
+  function unlockChart() {
+    hideAd("chartAd");
+    drawChart();
+  }
+
+  function drawChart() {
+    const canvas = document.getElementById("traiChart");
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#101827";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle = "#1f2937";
+    ctx.lineWidth = 1;
+
+    for (let x = 0; x < canvas.width; x += 80) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, canvas.height);
+      ctx.stroke();
+    }
+
+    for (let y = 0; y < canvas.height; y += 60) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
+    }
+
+    const candles = [
+      { o: 100, h: 120, l: 92, c: 114 },
+      { o: 114, h: 128, l: 108, c: 124 },
+      { o: 124, h: 126, l: 105, c: 110 },
+      { o: 110, h: 132, l: 109, c: 129 },
+      { o: 129, h: 140, l: 120, c: 135 },
+      { o: 135, h: 138, l: 118, c: 121 },
+      { o: 121, h: 130, l: 115, c: 127 },
+      { o: 127, h: 150, l: 126, c: 146 }
+    ];
+
+    const min = 90;
+    const max = 155;
+    const scale = v => canvas.height - 30 - ((v - min) / (max - min)) * (canvas.height - 60);
+
+    candles.forEach((c, i) => {
+      const x = 80 + i * 95;
+      const w = 38;
+      const color = c.c >= c.o ? "#22c55e" : "#ef4444";
+
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+
+      ctx.beginPath();
+      ctx.moveTo(x + w / 2, scale(c.h));
+      ctx.lineTo(x + w / 2, scale(c.l));
+      ctx.stroke();
+
+      ctx.fillRect(
+        x,
+        Math.min(scale(c.o), scale(c.c)),
+        w,
+        Math.max(4, Math.abs(scale(c.o) - scale(c.c)))
+      );
+    });
+
+    drawings.forEach(d => {
+      ctx.strokeStyle = d.color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(d.x1, d.y1);
+      ctx.lineTo(d.x2, d.y2);
+      ctx.stroke();
+    });
+  }
+
+  function setTool(tool) {
+    activeTool = tool;
+    document.getElementById("activeTool").innerText = "Aktives Tool: " + tool;
+  }
+
+  document.getElementById("traiChart").addEventListener("click", e => {
+    if (!activeTool) return;
+
+    const rect = e.target.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (e.target.width / rect.width);
+    const y = (e.clientY - rect.top) * (e.target.height / rect.height);
+
+    drawings.push({
+      tool: activeTool,
+      x1: x - 70,
+      y1: y,
+      x2: x + 70,
+      y2: y,
+      color: activeTool === "resistance" ? "#ef4444" : "#22c55e"
+    });
+
+    drawChart();
   });
 
-  const series = chart.addCandlestickSeries();
-  series.setData([
-    {time:"2024-01-01",open:100,high:110,low:95,close:108},
-    {time:"2024-01-02",open:108,high:115,low:105,close:112},
-    {time:"2024-01-03",open:112,high:118,low:109,close:111},
-    {time:"2024-01-04",open:111,high:120,low:110,close:119}
-  ]);
+  function analyzeChartAI() {
+    const result = document.getElementById("chartAIResult");
+    result.classList.remove("hidden");
+    result.innerHTML = `
+      <h3>Chart-KI Vorschlag</h3>
+      <p>Support-Zone erkannt: ca. 115</p>
+      <p>Resistance-Zone erkannt: ca. 150</p>
+      <p>Trend: Aufwärts. Vorschlag wird NICHT automatisch übernommen.</p>
+      <button onclick="setTool('support')">Support übernehmen</button>
+      <button onclick="setTool('resistance')">Resistance übernehmen</button>
+    `;
+  }
+
+  function saveChart() {
+    localStorage.setItem("trai_drawings", JSON.stringify(drawings));
+    alert("Chart Layout lokal gespeichert.");
+  }
+
+  function clearDrawings() {
+    drawings = [];
+    drawChart();
+  }
+
+  function calculateDerivative() {
+    const s = Number(document.getElementById("stockPrice").value || 0);
+    const d = Number(document.getElementById("derivativePrice").value || 0);
+    const l = Number(document.getElementById("leverage").value || 1);
+
+    if (!s || !d) {
+      document.getElementById("derivativeResult").innerText = "Bitte Werte eingeben.";
+      return;
+    }
+
+    document.getElementById("derivativeResult").innerText =
+      `Demo: Bei ${l}x Hebel bewegt sich das Derivat ungefähr ${(d * l).toFixed(2)} pro starkem Kursimpuls.`;
+  }
+
+  function sendChat() {
+    const name = document.getElementById("chatName").value || "Gast";
+    const input = document.getElementById("chatInput");
+    const warning = document.getElementById("chatWarning");
+    let msg = input.value.trim();
+
+    warning.innerText = "";
+
+    if (!msg) return;
+
+    if (blockedWords.some(w => msg.toLowerCase().includes(w))) {
+      warning.innerText = "Nachricht blockiert: Bitte respektvoll bleiben.";
+      return;
+    }
+
+    msg = msg.replace(/https?:\/\/\S+/gi, "[Link entfernt]");
+
+    const div = document.createElement("div");
+    div.className = "msg";
+    div.innerHTML = `<b>${name}:</b> ${msg}`;
+
+    document.getElementById("chatBox").appendChild(div);
+    input.value = "";
+
+    chatCount++;
+    localStorage.setItem("chatCount", chatCount);
+
+    if (!isAdmin && !isPremium && chatCount % 10 === 0) {
+      document.getElementById("chatAd").classList.remove("hidden");
+    }
+  }
+
+  function addWatch() {
+    const input = document.getElementById("watchInput");
+    const val = input.value.trim().toUpperCase();
+
+    if (!val) return;
+
+    const list = JSON.parse(localStorage.getItem("watchlist") || "[]");
+
+    if (!list.includes(val)) list.push(val);
+
+    localStorage.setItem("watchlist", JSON.stringify(list));
+    input.value = "";
+
+    renderWatch();
+  }
+
+  function renderWatch() {
+    const list = JSON.parse(localStorage.getItem("watchlist") || "[]");
+
+    document.getElementById("watchList").innerHTML =
+      list.map(x => `<span class="pill">${x}</span>`).join("");
+  }
+
+  const translations = {
+    de: {
+      title: "TRAI Stock & Crypto Scanner",
+      subtitle: "Eigene KI-Analyse, eigene Chart-Technik, Scanner, Derivate-Rechner und Community."
+    },
+    en: {
+      title: "TRAI Stock & Crypto Scanner",
+      subtitle: "Own AI analysis, own chart technology, scanners, derivatives calculator and community."
+    },
+    tr: {
+      title: "TRAI Hisse & Kripto Tarayıcı",
+      subtitle: "Kendi yapay zeka analizi, grafik teknolojisi, tarayıcılar ve topluluk."
+    },
+    es: {
+      title: "TRAI Escáner de Acciones y Cripto",
+      subtitle: "Análisis IA propio, gráficos propios, escáneres y comunidad."
+    },
+    fr: {
+      title: "TRAI Scanner Actions & Crypto",
+      subtitle: "Analyse IA, graphiques, scanners et communauté."
+    },
+    it: {
+      title: "TRAI Scanner Azioni & Crypto",
+      subtitle: "Analisi IA, grafici, scanner e community."
+    },
+    sq: {
+      title: "TRAI Skaner Aksionesh & Kripto",
+      subtitle: "Analizë AI, grafikë, skanerë dhe komunitet."
+    },
+    ar: {
+      title: "TRAI ماسح الأسهم والعملات",
+      subtitle: "تحليل ذكي ورسوم بيانية ومجتمع."
+    }
+  };
+
+  document.getElementById("languageSelect").addEventListener("change", e => {
+    const lang = e.target.value;
+    localStorage.setItem("lang", lang);
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      el.innerText = translations[lang][el.dataset.i18n];
+    });
+  });
+
+  const savedLang = localStorage.getItem("lang") || "de";
+  document.getElementById("languageSelect").value = savedLang;
+  document.getElementById("languageSelect").dispatchEvent(new Event("change"));
+
+  renderWatch();
+  drawChart();
+
+function openLegal(type){
+  document.getElementById('legalModal').classList.remove('hidden');
+
+  document.querySelectorAll('.legal-page').forEach(el=>{
+    el.classList.add('hidden');
+  });
+
+  document.getElementById(type).classList.remove('hidden');
 }
 
-const translations = {
-  de:{title:"TRAI Stock & Crypto Scanner",subtitle:"KI-gestützte Analyse für Aktien und Kryptowährungen."},
-  en:{title:"TRAI Stock & Crypto Scanner",subtitle:"AI-powered analysis for stocks and crypto."},
-  tr:{title:"TRAI Hisse & Kripto Tarayıcı",subtitle:"Hisse ve kripto için yapay zeka destekli analiz."},
-  es:{title:"TRAI Escáner de Acciones y Cripto",subtitle:"Análisis con IA para acciones y criptomonedas."},
-  fr:{title:"TRAI Scanner Actions & Crypto",subtitle:"Analyse IA pour actions et cryptomonnaies."},
-  it:{title:"TRAI Scanner Azioni & Crypto",subtitle:"Analisi AI per azioni e criptovalute."},
-  sq:{title:"TRAI Skaner Aksionesh & Kripto",subtitle:"Analizë me AI për aksione dhe kripto."}
-};
+function closeLegal(){
+  document.getElementById('legalModal').classList.add('hidden');
+}
 
-document.getElementById("languageSelect").addEventListener("change", e=>{
-  const lang = e.target.value;
-  localStorage.setItem("lang", lang);
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    el.innerText = translations[lang][el.dataset.i18n];
-  });
-});
-
-const savedLang = localStorage.getItem("lang") || "de";
-document.getElementById("languageSelect").value = savedLang;
-document.getElementById("languageSelect").dispatchEvent(new Event("change"));
 </script>
+
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <button onclick="openLegal('impressum')">Impressum</button>
+    <span>·</span>
+    <button onclick="openLegal('datenschutz')">Datenschutz</button>
+    <span>·</span>
+    <button onclick="openLegal('haftung')">Haftungsausschluss</button>
+  </div>
+
+  <p>© 2026 TRAI Scanner · Alle Rechte vorbehalten</p>
+  <p>KI Scanner · Eigene Chart-Technik · Community · Werbung · Android/iOS/PWA</p>
+</footer>
+
+<div id="legalModal" class="legal-modal hidden">
+  <div class="legal-content">
+    <button class="close-btn" onclick="closeLegal()">✕</button>
+
+    <div id="impressum" class="legal-page hidden">
+      <h2>Impressum</h2>
+      <p>TRAI Scanner</p>
+      <p>Betreiber: Ibrahim Lloqani</p>
+      <p>Deutschland</p>
+      <p>E-Mail: kontakt@traiscanner.de</p>
+    </div>
+
+    <div id="datenschutz" class="legal-page hidden">
+      <h2>Datenschutz</h2>
+      <p>Diese Plattform speichert lokal Browserdaten wie Spracheinstellungen, Watchlists und Layouts.</p>
+      <p>Externe Dienste wie Google Werbung oder Analyse-Tools können Cookies verwenden.</p>
+    </div>
+
+    <div id="haftung" class="legal-page hidden">
+      <h2>Haftungsausschluss</h2>
+      <p>Keine Finanzberatung. Alle Inhalte dienen ausschließlich Informationszwecken.</p>
+      <p>Der Handel mit Aktien, Kryptowährungen und Derivaten ist mit hohen Risiken verbunden und kann zum Totalverlust führen.</p>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
