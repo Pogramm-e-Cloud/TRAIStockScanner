@@ -1,24 +1,18 @@
-const traiDemoData = {
-  app: "TRAI Stock Scanner",
-  status: "DEMO",
-  stocks: {
-    topLong: [
-      { name: "NVIDIA", symbol: "NVDA", probability: 77 },
-      { name: "Amazon", symbol: "AMZN", probability: 63 }
-    ],
-    topShort: [
-      { name: "Tesla", symbol: "TSLA", probability: 36 }
-    ]
-  },
-  crypto: {
-    topLong: [
-      { name: "Bitcoin", symbol: "BTC", probability: 77 },
-      { name: "Ethereum", symbol: "ETH", probability: 72 }
-    ],
-    topShort: [
-      { name: "Solana", symbol: "SOL", probability: 38 }
-    ]
-  }
-};
+async function loadCryptoPrices() {
+  const url =
+    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,binancecoin&vs_currencies=usd&include_24hr_change=true";
 
-console.log("TRAI Demo Daten geladen", traiDemoData);
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log("TRAI Crypto Live Daten:", data);
+
+    return data;
+  } catch (error) {
+    console.error("Fehler beim Laden der Crypto Daten:", error);
+    return null;
+  }
+}
+
+loadCryptoPrices();
