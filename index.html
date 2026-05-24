@@ -6,13 +6,17 @@
 <title>TRAI Stock Scanner</title>
 <style>
 :root{--bg:#070b14;--panel:#0f172a;--card:#111827;--soft:#172033;--line:#253146;--green:#22c55e;--blue:#2563eb;--red:#ef4444;--gold:#f59e0b;--text:#fff;--muted:#a7b0c0}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}header{position:sticky;top:0;z-index:100;background:rgba(7,11,20,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{max-width:1280px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:26px;color:var(--green)}.brand img{width:48px;height:48px;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#020617}.nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}select,input,button{font:inherit;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:#0b1220;color:#fff}button{border:none;background:var(--green);color:#06130b;font-weight:800;cursor:pointer}button.secondary{background:#1f2937;color:#fff;border:1px solid var(--line)}button.blue{background:var(--blue);color:#fff}button.red{background:var(--red);color:#fff}section{max-width:1280px;margin:auto;padding:58px 20px}.hero{max-width:none;padding:80px 20px 70px;background:radial-gradient(circle at 18% 15%,rgba(34,197,94,.18),transparent 28%),radial-gradient(circle at 82% 20%,rgba(37,99,235,.22),transparent 30%),linear-gradient(135deg,#08111f,#070b14 72%);border-bottom:1px solid var(--line)}.hero-grid{max-width:1280px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}.eyebrow{color:var(--green);font-weight:800;margin:0 0 12px}h1{font-size:clamp(40px,5vw,72px);line-height:1.04;margin:0 0 18px}h2{font-size:clamp(28px,3vw,40px);margin:0 0 18px}h3{margin:0 0 12px}p{color:var(--muted);line-height:1.58}.hero-text{font-size:18px;max-width:640px}.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.tag{border:1px solid var(--line);background:#0b1220;color:#cbd5e1;padding:8px 12px;border-radius:999px;font-size:13px}.hero-image{width:100%;border-radius:26px;border:1px solid var(--line);box-shadow:0 25px 100px rgba(0,0,0,.45);background:#020617;display:block}.panel{background:rgba(17,24,39,.95);border:1px solid var(--line);border-radius:24px;padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.long{border-color:rgba(34,197,94,.65)}.short{border-color:rgba(239,68,68,.65)}.long h3{color:var(--green)}.short h3{color:var(--red)}.ad-box{background:#172033;border:1px dashed var(--gold);border-radius:16px;padding:18px;margin:18px 0}.hidden{display:none!important}#scannerDashboard{display:none}#scannerDashboard.active{display:block}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.chart-box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px}canvas{width:100%;height:390px;display:block;border-radius:14px;background:#101827}.community-layout{display:grid;grid-template-columns:430px 1fr;gap:20px;align-items:start}.chat-panel{max-width:430px;width:100%;min-height:360px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.chat-window{min-height:180px;max-height:260px;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;margin-bottom:12px}.chat-form{display:grid;grid-template-columns:95px 1fr;gap:8px}.chat-form button{grid-column:1/-1}.message{background:#172033;border-radius:10px;padding:9px 10px;margin:7px 0}.preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}.preview-card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}.preview-card img{width:100%;display:block;background:#020617}.preview-card h3{padding:18px;margin:0}.legal-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:9999;padding:18px}.legal-content{width:100%;max-width:560px;background:#111827;border:1px solid #374151;border-radius:18px;padding:24px;position:relative}.close-btn{position:absolute;top:10px;right:10px;background:#1f2937;color:white}.site-footer{border-top:1px solid var(--line);text-align:center;padding:26px 18px 36px;color:#7d8797;font-size:12px}.footer-links{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.footer-links button{background:transparent;color:#9ca3af;border:none;font-size:12px;padding:3px 6px;font-weight:400}.footer-links button:hover{color:var(--green);text-decoration:underline}.risk{background:#211616;border-color:#ff5252}@media(max-width:850px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-text{margin:auto}.hero-buttons,.tags{justify-content:center}.nav{justify-content:center}.brand{width:100%;justify-content:center}.community-layout{grid-template-columns:1fr}.chat-panel{max-width:100%}.chat-form{grid-template-columns:1fr}.toolbar button{width:100%}canvas{height:300px}}
+
+.live-price-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.live-price-row:last-child{border-bottom:none}
+.live-price-row span{color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
 <header><div class="nav"><div class="brand"><img src="TRAI_Bilder/TRAI_Logo.png" alt="TRAI Logo"><span>TRAI Scanner</span></div><div class="nav-actions"><select id="languageSelect"><option value="de">Deutsch</option><option value="en">English</option><option value="tr">Türkçe</option><option value="es">Español</option><option value="fr">Français</option><option value="it">Italiano</option><option value="sq">Shqip</option><option value="ar">العربية</option></select><button class="secondary" onclick="scrollToId('home')">Home</button><button class="secondary" onclick="startScanner()">Scanner</button><button class="secondary" onclick="scrollToId('chart')">Chart</button><button class="secondary" onclick="scrollToId('community')">Chat</button></div></div></header>
 <section id="home" class="hero"><div class="hero-grid"><div><p class="eyebrow"><span data-i18n="heroEyebrow">KI Analyse · Aktien · Krypto · Derivate · Community</span></p><h1 data-i18n="heroTitle">TRAI Stock & Crypto Scanner</h1><p class="hero-text" data-i18n="heroSubtitle">Moderne Marktanalyse, eigene Chart-Technik, intelligente Scanner, Derivate-Rechner und Community in einer Plattform.</p><div class="hero-buttons"><button onclick="startScanner()"><span data-i18n="openScannerBtn">KI Scanner öffnen</span></button><button class="secondary" onclick="scrollToId('chart')"><span data-i18n="openChartBtn">Eigenen Chart öffnen</span></button><button class="secondary" onclick="scrollToId('community')">Community</button></div><div class="tags"><span class="tag"><span data-i18n="ownChartEngine">Eigene Chart Engine</span></span><span class="tag"><span data-i18n="googleAdsBeforeAI">Google Werbung vor KI Analyse</span></span><span class="tag"><span data-i18n="mobileReady">Android/iOS vorbereitet</span></span><span class="tag">Admin: ?admin=1</span></div></div><div><img class="hero-image" src="TRAI_Bilder/TRAI_BullBear.png" alt="TRAI Bull Bear Banner"></div></div></section>
 <section><div class="panel" style="text-align:center"><p class="eyebrow">LIVE KI SCANNER</p><h2><span data-i18n="marketOpportunities">Marktchancen auf einen Blick</span></h2><p data-i18n="scannerIntro">Der Scanner zeigt Aktien- und Krypto-Signale übersichtlich an. Vor der Analyse kann eine Anzeige eingeblendet werden.</p><button onclick="startScanner()">KI Scanner öffnen</button></div></section>
-<section id="scannerDashboard"><div class="panel"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><p class="eyebrow">TRAI KI SCANNER</p><h2><span data-i18n="currentSignals">Aktuelle Long- und Short-Signale</span></h2><p><span data-i18n="demoUntilLive">Demo-Daten bis echte Live-APIs verbunden sind.</span></p></div><button class="secondary" onclick="closeScanner()">Schließen</button></div><div id="scannerAd" class="ad-box"><b>Anzeige · Google Platzhalter</b><p>Hier kann später Google AdSense vor der KI-Ausgabe erscheinen.</p><button onclick="showScannerResults()">Weiter zur Analyse</button></div><div id="scannerResults" class="hidden"><div class="grid"><div class="card long"><h3>Top 3 LONG</h3><div id="longSignals"></div></div><div class="card short"><h3>Top 3 SHORT</h3><div id="shortSignals"></div></div></div></div></div></section>
+<section id="scannerDashboard"><div class="panel"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><p class="eyebrow">TRAI KI SCANNER</p><h2><span data-i18n="currentSignals">Aktuelle Long- und Short-Signale</span></h2><p><span data-i18n="demoUntilLive">Live-Krypto-Daten werden kostenlos geladen. Aktien bleiben bis zur API-Verbindung als Demo sichtbar.</span></p><div id="cryptoPrices" class="card" style="margin-top:15px"><p>Live-Krypto-Daten werden geladen...</p></div></div><button class="secondary" onclick="closeScanner()">Schließen</button></div><div id="scannerAd" class="ad-box"><b>Anzeige · Google Platzhalter</b><p>Hier kann später Google AdSense vor der KI-Ausgabe erscheinen.</p><button onclick="showScannerResults()">Weiter zur Analyse</button></div><div id="scannerResults" class="hidden"><div class="grid"><div class="card long"><h3>Top 3 LONG</h3><div id="longSignals"></div></div><div class="card short"><h3>Top 3 SHORT</h3><div id="shortSignals"></div></div></div></div></div></section>
 <section id="chart"><h2><span data-i18n="ownChartTitle">Eigener TRAI Chart</span></h2><p data-i18n="chartIntro">Eigene Canvas-Chart-Engine mit Candles, Werkzeugen und KI-Vorschlägen. Keine Kopie fremder Plattformen.</p><div class="toolbar"><button onclick="openChart()">Chart öffnen</button><button class="secondary" onclick="setTool('Trendlinie')">Trendlinie</button><button class="secondary" onclick="setTool('Support')">Support</button><button class="secondary" onclick="setTool('Resistance')">Resistance</button><button class="secondary" onclick="setTool('Zone')">Zone</button><button class="secondary" onclick="setTool('Notiz')">Notiz</button><button class="secondary" onclick="setTool('Messung')">Messung</button><button class="blue" onclick="chartAI()">Chart-KI</button><button class="secondary" onclick="saveChart()">Speichern</button><button class="secondary" onclick="window.print()">Drucken</button><button class="red" onclick="clearDrawings()">Löschen</button></div><div id="chartAd" class="ad-box hidden"><b>Anzeige</b><p>Ab mehreren Chart-Öffnungen kann hier Werbung erscheinen.</p><button onclick="unlockChart()">Chart weiter nutzen</button></div><div class="chart-box"><canvas id="traiChart" width="1100" height="420"></canvas><p id="activeTool">Aktives Tool: keines</p><p style="font-size:14px;color:var(--muted)">Werkzeug auswählen und anschließend in den Chart klicken.</p><div id="chartAIResult" class="card hidden"></div></div></section>
 <section><h2><span data-i18n="derivativesTitle">Derivate Rechner</span></h2><div class="grid"><div class="card"><input id="stockPrice" type="number" placeholder="Aktienkurs z.B. 100"> <input id="derivativePrice" type="number" placeholder="Derivat Preis z.B. 2.50"> <input id="leverage" type="number" placeholder="Hebel z.B. 5"> <button onclick="calculateDerivative()">Berechnen</button><p id="derivativeResult"></p></div><div class="card"><h3>Analyse vorbereitet</h3><p>Hebel, Risiko, Stop-Loss, Take-Profit und KI-Vorschläge sind vorbereitet und werden später mit echten Daten verbunden.</p></div></div></section>
 <section id="community"><h2><span data-i18n="communityTitle">Kostenloser TRAI Community Chat</span></h2><p><span data-i18n="communityIntro">Community-Chat mit Spam-Schutz, Schimpfwortfilter und integrierter Werbung.</span></p><div class="community-layout"><div class="chat-panel"><div id="chatBox" class="chat-window"></div><div id="chatAd" class="ad-box hidden"><b>Anzeige · Community</b><p>Kleine Werbefläche im Chatbereich.</p></div><div class="chat-form"><input id="chatName" placeholder="Name" value="Gast"><input id="chatInput" placeholder="Nachricht schreiben..."><button onclick="sendChat()">Senden</button></div><p id="chatWarning" style="color:var(--red)"></p></div><div class="card"><h3>Community Übersicht</h3><p>Platz für Trending Coins, aktive Diskussionen, News und Werbung.</p><div class="ad-box"><b>Google Anzeige</b><p>Werbeplatz für spätere Monetarisierung.</p></div><p><b>Trending:</b> BTC · ETH · NVDA · TSLA</p><p><b>Status:</b> Community Demo aktiv</p></div></div></section>
@@ -38,7 +42,7 @@ const translations={
     marketOpportunities:"Marktchancen auf einen Blick",
     scannerIntro:"Der Scanner zeigt Aktien- und Krypto-Signale übersichtlich an. Vor der Analyse kann eine Anzeige eingeblendet werden.",
     currentSignals:"Aktuelle Long- und Short-Signale",
-    demoUntilLive:"Demo-Daten bis echte Live-APIs verbunden sind.",
+    demoUntilLive:"Live-Krypto-Daten werden kostenlos geladen. Aktien bleiben bis zur API-Verbindung als Demo sichtbar.",
     ownChartTitle:"Eigener TRAI Chart",
     chartIntro:"Eigene Canvas-Chart-Engine mit Candles, Werkzeugen und KI-Vorschlägen. Keine Kopie fremder Plattformen.",
     derivativesTitle:"Derivate Rechner",
@@ -64,7 +68,7 @@ const translations={
     marketOpportunities:"Market opportunities at a glance",
     scannerIntro:"The scanner displays stock and crypto signals clearly. An ad can be shown before the analysis.",
     currentSignals:"Current long and short signals",
-    demoUntilLive:"Demo data until real live APIs are connected.",
+    demoUntilLive:"Free live crypto data is loading. Stocks remain demo until the stock API is connected.",
     ownChartTitle:"Custom TRAI chart",
     chartIntro:"Own canvas chart engine with candles, tools and AI suggestions. No copy of other platforms.",
     derivativesTitle:"Derivatives calculator",
@@ -256,6 +260,59 @@ applyLanguage(savedLang);
 renderWatch();
 drawChart();
 
-<script src="frontend-live-data.js"></script>
+
+async function loadLiveCryptoData(){
+  const target=document.getElementById("cryptoPrices");
+  if(!target)return;
+  target.innerHTML="<p>Live-Krypto-Daten werden geladen...</p>";
+  const url="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,binancecoin&vs_currencies=usd&include_24hr_change=true";
+  try{
+    const response=await fetch(url);
+    if(!response.ok)throw new Error("CoinGecko Antwort nicht OK");
+    const prices=await response.json();
+    const coins=[
+      {id:"bitcoin",label:"Bitcoin",symbol:"BTC"},
+      {id:"ethereum",label:"Ethereum",symbol:"ETH"},
+      {id:"solana",label:"Solana",symbol:"SOL"},
+      {id:"ripple",label:"XRP",symbol:"XRP"},
+      {id:"binancecoin",label:"BNB",symbol:"BNB"}
+    ];
+    target.innerHTML=coins.map(coin=>{
+      const item=prices[coin.id];
+      if(!item)return "";
+      const price=Number(item.usd).toLocaleString("de-DE",{style:"currency",currency:"USD",maximumFractionDigits:2});
+      const change=Number(item.usd_24h_change||0).toFixed(2);
+      const color=change>=0?"#22c55e":"#ef4444";
+      return `<div class="live-price-row"><div><b>${coin.label}</b><br><span>${coin.symbol}</span></div><div style="text-align:right"><b>${price}</b><br><span style="color:${color}">${change}% / 24h</span></div></div>`;
+    }).join("");
+    updateScannerWithLiveCrypto(prices);
+  }catch(error){
+    console.error("TRAI Live-Daten Fehler:",error);
+    target.innerHTML="<p>Live-Daten konnten gerade nicht geladen werden. Bitte später erneut versuchen.</p>";
+  }
+}
+
+function updateScannerWithLiveCrypto(prices){
+  if(!prices||!prices.bitcoin||!prices.ethereum)return;
+  const btcChange=Number(prices.bitcoin.usd_24h_change||0);
+  const ethChange=Number(prices.ethereum.usd_24h_change||0);
+  const solChange=Number(prices.solana?.usd_24h_change||0);
+  scannerData.long=[
+    {name:"Bitcoin",symbol:"BTC",market:"Krypto",probability:Math.min(95,Math.max(55,Math.round(70+btcChange)))},
+    {name:"Ethereum",symbol:"ETH",market:"Krypto",probability:Math.min(95,Math.max(55,Math.round(68+ethChange)))},
+    {name:"NVIDIA",symbol:"NVDA",market:"Aktie",probability:77}
+  ];
+  scannerData.short=[
+    {name:"Solana",symbol:"SOL",market:"Krypto",probability:Math.max(25,Math.min(45,Math.round(40-solChange)))},
+    {name:"Tesla",symbol:"TSLA",market:"Aktie",probability:38},
+    {name:"Netflix",symbol:"NFLX",market:"Aktie",probability:35}
+  ];
+  const results=document.getElementById("scannerResults");
+  if(results&&!results.classList.contains("hidden"))renderSignals();
+}
+
+loadLiveCryptoData();
+setInterval(loadLiveCryptoData,120000);
+</script>
 </body>
 </html>
