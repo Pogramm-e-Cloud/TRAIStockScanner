@@ -206,10 +206,27 @@
       `).join("")}
 
       <h3>Top Crypto LONG</h3>
-      ${traiDemoData.crypto.topLong.map(item => `
-        <p>${item.name} (${item.symbol}) - ${item.probability}%</p>
-      `).join("")}
-    `;
+      const traiDemoData = {
+  stocks: {
+    topLong: [
+      { name: "NVIDIA", symbol: "NVDA", probability: 77 },
+      { name: "Amazon", symbol: "AMZN", probability: 63 }
+    ],
+    topShort: [
+      { name: "Tesla", symbol: "TSLA", probability: 36 }
+    ]
+  },
+
+  crypto: {
+    topLong: [
+      { name: "Bitcoin", symbol: "BTC", probability: 77 },
+      { name: "Ethereum", symbol: "ETH", probability: 72 }
+    ],
+    topShort: [
+      { name: "Solana", symbol: "SOL", probability: 38 }
+    ]
+  }
+};
 
     document.body.prepend(signalBox);
   }
