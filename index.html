@@ -1,296 +1,195 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TRAI Stock Scanner</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRAI Scanner</title>
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #070b14;
-      color: white;
-    }
-
-    header {
-      padding: 70px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #061018, #102033, #0b3d2e);
-    }
-
-    h1 {
-      font-size: 46px;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-bottom: 25px;
-    }
-
-    p {
-      color: #b8c0cc;
-      font-size: 17px;
-    }
-
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 45px 20px;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 26px;
-      background: #00e676;
-      color: #04100a;
-      text-decoration: none;
-      border-radius: 12px;
-      font-weight: bold;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #111827;
-      padding: 22px;
-      border-radius: 18px;
-      border: 1px solid #1f2937;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: #00e676;
-    }
-
-    .ai-panel {
-      margin-top: -45px;
-      background: rgba(17, 24, 39, 0.92);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(0, 230, 118, 0.35);
-      box-shadow: 0 25px 80px rgba(0, 230, 118, 0.15);
-      border-radius: 28px;
-      padding: 28px;
-    }
-
-    .long {
-      background: #07150f;
-      border: 1px solid #00e676;
-    }
-
-    .short {
-      background: #1a0b0b;
-      border: 1px solid #ff5252;
-    }
-
-    .long h3 {
-      color: #00e676;
-    }
-
-    .short h3 {
-      color: #ff5252;
-    }
-
-    img {
-      max-width: 100%;
-      border-radius: 22px;
-      margin: 20px 0;
-      border: 1px solid #1f2937;
-    }
-
-    .warning {
-      background: #1f1616;
-      border: 1px solid #ff5252;
-      color: #ffdede;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #7d8797;
-      border-top: 1px solid #1f2937;
-    }
+    body{margin:0;background:#0b0f19;color:white;font-family:Arial}
+    header{padding:20px;display:flex;justify-content:space-between;align-items:center;background:#111827}
+    .logo{font-size:28px;font-weight:bold;color:#22c55e}
+    select,button,input{padding:10px;border-radius:8px;border:none}
+    button{background:#22c55e;color:white;font-weight:bold;cursor:pointer}
+    section{padding:40px 20px;max-width:1200px;margin:auto}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .card{background:#151b2b;border:1px solid #263249;border-radius:16px;padding:20px}
+    .long{border-color:#22c55e}
+    .short{border-color:#ef4444}
+    .chart-box{height:350px;background:#111827;border-radius:16px;margin-top:20px}
+    .ad-box{display:none;background:#1f2937;padding:30px;text-align:center;border-radius:16px;margin:30px 0}
+    .hidden{display:none}
+    .warning{font-size:13px;color:#aaa;margin-top:20px}
   </style>
 </head>
 
 <body>
 
 <header>
-  <h1>TRAI Stock Scanner</h1>
-  <p>KI-gestützte Aktienanalyse, Krypto-Scanner, Derivate-Rechner und Community-Plattform.</p>
-  <a class="button" href="#scanner">KI Scanner ansehen</a>
+  <div class="logo">TRAI Scanner</div>
+  <select id="languageSelect">
+    <option value="de">Deutsch</option>
+    <option value="en">English</option>
+    <option value="tr">Türkçe</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+    <option value="it">Italiano</option>
+    <option value="sq">Shqip</option>
+  </select>
 </header>
 
-<section id="scanner">
-  <div class="ai-panel">
-    <div style="text-align:center;margin-bottom:25px;">
-      <p style="color:#00e676;font-weight:bold;margin:0;">LIVE KI SCANNER</p>
-      <h2>Top Signale im Vordergrund</h2>
-      <p>Aktien & Krypto · Long / Short · KI-Wahrscheinlichkeit</p>
-    </div>
+<section>
+  <h1 data-i18n="title">TRAI Stock & Crypto Scanner</h1>
+  <p data-i18n="subtitle">KI-gestützte Analyse für Aktien und Kryptowährungen.</p>
 
-    <div class="grid">
+  <button onclick="openScanner()">KI Scanner öffnen</button>
 
-      <div class="card long">
-        <h3>Top 3 LONG</h3>
-        <div id="longSignals"></div>
-      </div>
-
-      <div class="card short">
-        <h3>Top 3 SHORT</h3>
-        <div id="shortSignals"></div>
-      </div>
-
-    </div>
-
-    <p style="text-align:center;color:#7d8797;margin-top:20px;font-size:14px;">
-      Demo-Anzeige · Später verbunden mit Live APIs, CoinGecko, Binance, Finnhub und KI Analyse.
-    </p>
+  <div id="adScreen" class="ad-box">
+    <h2>Anzeige</h2>
+    <p>Werbung wird hier eingeblendet.</p>
+    <button onclick="continueToScanner()">Weiter zum Scanner</button>
   </div>
 </section>
 
-<section>
-  <h2>Funktionen</h2>
+<section id="scannerSection" class="hidden">
+
+  <h2>Crypto Scanner</h2>
   <div class="grid">
-    <div class="card">
-      <h3>KI Aktienanalyse</h3>
-      <p>Top Kauf- und Verkaufssignale mit Charttechnik, News und Volumenbewertung.</p>
+    <div class="card long">
+      <h3>Top 3 LONG Crypto</h3>
+      <p>1. Bitcoin BTC — 78%</p>
+      <p>2. Ethereum ETH — 74%</p>
+      <p>3. Solana SOL — 69%</p>
     </div>
-
-    <div class="card">
-      <h3>Krypto Scanner</h3>
-      <p>Bitcoin, Ethereum, Solana und weitere Coins mit Long- und Short-Auswertung.</p>
-    </div>
-
-    <div class="card">
-      <h3>Derivate Rechner</h3>
-      <p>Berechnung von Einstieg, Ausstieg, Stop-Loss, Take-Profit, Risiko und Hebel.</p>
-    </div>
-
-    <div class="card">
-      <h3>Warnsystem</h3>
-      <p>Sound- und Push-Warnungen für Signale, Stop-Loss, News und Risikoereignisse.</p>
-    </div>
-
-    <div class="card">
-      <h3>Community</h3>
-      <p>Community-Chat, Premium-Zugang und Unterstützerbereich vorbereitet.</p>
+    <div class="card short">
+      <h3>Top 3 SHORT Crypto</h3>
+      <p>1. Dogecoin DOGE — 41%</p>
+      <p>2. XRP — 39%</p>
+      <p>3. Cardano ADA — 37%</p>
     </div>
   </div>
-</section>
 
-<section>
-  <h2>Plattformen</h2>
+  <h2>Aktien Scanner</h2>
   <div class="grid">
-    <div class="card">Android vorbereitet</div>
-    <div class="card">iOS vorbereitet</div>
-    <div class="card">Windows vorbereitet</div>
-    <div class="card">macOS vorbereitet</div>
-    <div class="card">Web-Version vorbereitet</div>
+    <div class="card long">
+      <h3>Top 3 LONG Aktien</h3>
+      <p>1. NVIDIA NVDA — 77%</p>
+      <p>2. Apple AAPL — 72%</p>
+      <p>3. Microsoft MSFT — 70%</p>
+    </div>
+    <div class="card short">
+      <h3>Top 3 SHORT Aktien</h3>
+      <p>1. Tesla TSLA — 38%</p>
+      <p>2. Meta META — 36%</p>
+      <p>3. Netflix NFLX — 35%</p>
+    </div>
   </div>
+
 </section>
 
 <section>
-  <h2>TRAI Vorschau</h2>
+  <h2>Analyse Charts</h2>
+  <p>2 Charts kostenlos. Ab dem 3. Chart erscheint Werbung.</p>
 
-  <img src="TRAI%20images/TRAI_Logo.png" alt="TRAI Logo" style="width:220px;display:block;margin:auto;">
+  <button onclick="createChart()">Chart öffnen</button>
 
-  <img src="TRAI%20images/TRAI_UI_Mockup.png" alt="TRAI UI Mockup">
+  <div id="chartAd" class="ad-box">
+    <h2>Anzeige</h2>
+    <p>Ab dem 3. Chart wird Werbung angezeigt.</p>
+    <button onclick="unlockChart()">Chart freischalten</button>
+  </div>
 
-  <img src="TRAI%20images/TRAI_Plattform_Versionen.png" alt="TRAI Plattform Versionen">
-
-  <img src="TRAI%20images/TRAI_Infografik.png" alt="TRAI Infografik">
+  <div id="charts"></div>
 </section>
 
 <section>
-  <h2>Sicherheit</h2>
+  <h2>Login vorbereitet</h2>
   <div class="card">
-    <p>Firebase Login, Firestore Datenbank, API-Fallback-System und geschützte Backend-Struktur sind vorbereitet.</p>
+    <input id="email" placeholder="E-Mail" />
+    <input id="password" type="password" placeholder="Passwort" />
+    <button>Login mit Supabase später aktivieren</button>
   </div>
-</section>
 
-<section>
-  <div class="card warning">
-    <h3>Wichtiger Hinweis</h3>
-    <p>Diese Plattform dient ausschließlich Analyse- und Informationszwecken. Keine Finanzberatung. Trading, Aktien, Krypto und Derivate können zum Totalverlust führen.</p>
-  </div>
+  <p class="warning">
+    Hinweis: Alle Inhalte dienen nur Informationszwecken und sind keine Finanzberatung.
+    TRAI verwendet eigene Analysen, eigene Scanner und legale Open-Source-Charts.
+  </p>
 </section>
-
-<footer>
-  © 2026 TRAI Stock Scanner – Development Preview
-</footer>
 
 <script>
-  const traiDemoData = {
-    stocks: {
-      topLong: [
-        { name: "NVIDIA", symbol: "NVDA", probability: 77 },
-        { name: "Amazon", symbol: "AMZN", probability: 63 },
-        { name: "Apple", symbol: "AAPL", probability: 61 }
-      ],
-      topShort: [
-        { name: "Tesla", symbol: "TSLA", probability: 36 },
-        { name: "Meta", symbol: "META", probability: 39 },
-        { name: "Netflix", symbol: "NFLX", probability: 40 }
-      ]
-    },
+const isAdmin = new URLSearchParams(window.location.search).get("admin") === "1";
+let chartCount = Number(localStorage.getItem("chartCount") || 0);
 
-    crypto: {
-      topLong: [
-        { name: "Bitcoin", symbol: "BTC", probability: 77 },
-        { name: "Ethereum", symbol: "ETH", probability: 72 },
-        { name: "BNB", symbol: "BNB", probability: 66 }
-      ],
-      topShort: [
-        { name: "Solana", symbol: "SOL", probability: 38 },
-        { name: "XRP", symbol: "XRP", probability: 41 },
-        { name: "Dogecoin", symbol: "DOGE", probability: 43 }
-      ]
-    }
-  };
+function openScanner(){
+  if(isAdmin){
+    document.getElementById("scannerSection").classList.remove("hidden");
+    return;
+  }
+  document.getElementById("adScreen").style.display = "block";
+}
 
-  function renderSignals() {
-    const longSignals = document.getElementById("longSignals");
-    const shortSignals = document.getElementById("shortSignals");
+function continueToScanner(){
+  document.getElementById("adScreen").style.display = "none";
+  document.getElementById("scannerSection").classList.remove("hidden");
+}
 
-    const allLong = [
-      ...traiDemoData.stocks.topLong.map(item => ({ ...item, type: "Aktie" })),
-      ...traiDemoData.crypto.topLong.map(item => ({ ...item, type: "Krypto" }))
-    ].sort((a, b) => b.probability - a.probability).slice(0, 3);
+function createChart(){
+  chartCount++;
+  localStorage.setItem("chartCount", chartCount);
 
-    const allShort = [
-      ...traiDemoData.stocks.topShort.map(item => ({ ...item, type: "Aktie" })),
-      ...traiDemoData.crypto.topShort.map(item => ({ ...item, type: "Krypto" }))
-    ].sort((a, b) => a.probability - b.probability).slice(0, 3);
-
-    longSignals.innerHTML = allLong.map((item, index) => `
-      <p>
-        <b>${index + 1}. ${item.name}</b> · ${item.symbol}<br>
-        Markt: ${item.type}<br>
-        Wahrscheinlichkeit: <b>${item.probability}%</b><br>
-        Signal: LONG
-      </p>
-      <hr style="border-color:#1f2937;">
-    `).join("");
-
-    shortSignals.innerHTML = allShort.map((item, index) => `
-      <p>
-        <b>${index + 1}. ${item.name}</b> · ${item.symbol}<br>
-        Markt: ${item.type}<br>
-        Wahrscheinlichkeit: <b>${item.probability}%</b><br>
-        Signal: SHORT
-      </p>
-      <hr style="border-color:#1f2937;">
-    `).join("");
+  if(chartCount > 2 && !isAdmin){
+    document.getElementById("chartAd").style.display = "block";
+    return;
   }
 
-  renderSignals();
+  renderChart();
+}
+
+function unlockChart(){
+  document.getElementById("chartAd").style.display = "none";
+  renderChart();
+}
+
+function renderChart(){
+  const box = document.createElement("div");
+  box.className = "chart-box";
+  document.getElementById("charts").appendChild(box);
+
+  const chart = LightweightCharts.createChart(box, {
+    layout:{background:{color:"#111827"},textColor:"#ffffff"},
+    grid:{vertLines:{color:"#1f2937"},horzLines:{color:"#1f2937"}}
+  });
+
+  const series = chart.addCandlestickSeries();
+  series.setData([
+    {time:"2024-01-01",open:100,high:110,low:95,close:108},
+    {time:"2024-01-02",open:108,high:115,low:105,close:112},
+    {time:"2024-01-03",open:112,high:118,low:109,close:111},
+    {time:"2024-01-04",open:111,high:120,low:110,close:119}
+  ]);
+}
+
+const translations = {
+  de:{title:"TRAI Stock & Crypto Scanner",subtitle:"KI-gestützte Analyse für Aktien und Kryptowährungen."},
+  en:{title:"TRAI Stock & Crypto Scanner",subtitle:"AI-powered analysis for stocks and crypto."},
+  tr:{title:"TRAI Hisse & Kripto Tarayıcı",subtitle:"Hisse ve kripto için yapay zeka destekli analiz."},
+  es:{title:"TRAI Escáner de Acciones y Cripto",subtitle:"Análisis con IA para acciones y criptomonedas."},
+  fr:{title:"TRAI Scanner Actions & Crypto",subtitle:"Analyse IA pour actions et cryptomonnaies."},
+  it:{title:"TRAI Scanner Azioni & Crypto",subtitle:"Analisi AI per azioni e criptovalute."},
+  sq:{title:"TRAI Skaner Aksionesh & Kripto",subtitle:"Analizë me AI për aksione dhe kripto."}
+};
+
+document.getElementById("languageSelect").addEventListener("change", e=>{
+  const lang = e.target.value;
+  localStorage.setItem("lang", lang);
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    el.innerText = translations[lang][el.dataset.i18n];
+  });
+});
+
+const savedLang = localStorage.getItem("lang") || "de";
+document.getElementById("languageSelect").value = savedLang;
+document.getElementById("languageSelect").dispatchEvent(new Event("change"));
 </script>
 
 </body>
