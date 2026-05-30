@@ -3,37 +3,246 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TRAI Stock Scanner</title>
+<title>TRAI Scanner – KI Analyse, Aktien, Krypto & Charts</title>
+<meta name="description" content="TRAI Scanner ist eine eigene KI-Analyseplattform für Aktien, Kryptowährungen, Charts, Scanner, Watchlist, Derivate und Community. Keine Finanzberatung." />
+<meta property="og:title" content="TRAI Scanner – KI Analyse, Aktien, Krypto & Charts" />
+<meta property="og:description" content="Eigene Marktanalyse, eigener Chart, Scanner, Watchlist und Community für Aktien und Kryptowährungen." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.traiscanner.de/" />
+<meta property="og:image" content="https://www.traiscanner.de/TRAI_Bilder/TRAI_BullBear.png" />
+<meta name="theme-color" content="#070b14" />
 <style>
 :root{--bg:#070b14;--panel:#0f172a;--card:#111827;--soft:#172033;--line:#253146;--green:#22c55e;--blue:#2563eb;--red:#ef4444;--gold:#f59e0b;--text:#fff;--muted:#a7b0c0}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}header{position:sticky;top:0;z-index:100;background:rgba(7,11,20,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{max-width:1280px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:26px;color:var(--green)}.brand img{width:48px;height:48px;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#020617}.nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}select,input,button{font:inherit;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:#0b1220;color:#fff}button{border:none;background:var(--green);color:#06130b;font-weight:800;cursor:pointer}button.secondary{background:#1f2937;color:#fff;border:1px solid var(--line)}button.blue{background:var(--blue);color:#fff}button.red{background:var(--red);color:#fff}section{max-width:1280px;margin:auto;padding:58px 20px}.hero{max-width:none;padding:80px 20px 70px;background:radial-gradient(circle at 18% 15%,rgba(34,197,94,.18),transparent 28%),radial-gradient(circle at 82% 20%,rgba(37,99,235,.22),transparent 30%),linear-gradient(135deg,#08111f,#070b14 72%);border-bottom:1px solid var(--line)}.hero-grid{max-width:1280px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}.eyebrow{color:var(--green);font-weight:800;margin:0 0 12px}h1{font-size:clamp(40px,5vw,72px);line-height:1.04;margin:0 0 18px}h2{font-size:clamp(28px,3vw,40px);margin:0 0 18px}h3{margin:0 0 12px}p{color:var(--muted);line-height:1.58}.hero-text{font-size:18px;max-width:640px}.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.tag{border:1px solid var(--line);background:#0b1220;color:#cbd5e1;padding:8px 12px;border-radius:999px;font-size:13px}.hero-image{width:100%;border-radius:26px;border:1px solid var(--line);box-shadow:0 25px 100px rgba(0,0,0,.45);background:#020617;display:block}.panel{background:rgba(17,24,39,.95);border:1px solid var(--line);border-radius:24px;padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.long{border-color:rgba(34,197,94,.65)}.short{border-color:rgba(239,68,68,.65)}.long h3{color:var(--green)}.short h3{color:var(--red)}.ad-box{background:#172033;border:1px dashed var(--gold);border-radius:16px;padding:18px;margin:18px 0}.hidden{display:none!important}#scannerDashboard{display:none}#scannerDashboard.active{display:block}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.chart-box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px}canvas{width:100%;height:390px;display:block;border-radius:14px;background:#101827}.community-layout{display:grid;grid-template-columns:430px 1fr;gap:20px;align-items:start}.chat-panel{max-width:430px;width:100%;min-height:360px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.chat-window{min-height:180px;max-height:260px;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;margin-bottom:12px}.chat-form{display:grid;grid-template-columns:95px 1fr;gap:8px}.chat-form button{grid-column:1/-1}.message{background:#172033;border-radius:10px;padding:9px 10px;margin:7px 0}.preview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}.preview-card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}.preview-card img{width:100%;display:block;background:#020617}.preview-card h3{padding:18px;margin:0}.legal-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:9999;padding:18px}.legal-content{width:100%;max-width:760px;max-height:86vh;overflow:auto;background:#111827;border:1px solid #374151;border-radius:18px;padding:28px;position:relative}.close-btn{position:absolute;top:10px;right:10px;background:#1f2937;color:white}.site-footer{border-top:1px solid var(--line);text-align:center;padding:26px 18px 36px;color:#7d8797;font-size:12px}.footer-links{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.footer-links button{background:transparent;color:#9ca3af;border:none;font-size:12px;padding:3px 6px;font-weight:400}.footer-links button:hover{color:var(--green);text-decoration:underline}.risk{background:#211616;border-color:#ff5252}@media(max-width:850px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-text{margin:auto}.hero-buttons,.tags{justify-content:center}.nav{justify-content:center}.brand{width:100%;justify-content:center}.community-layout{grid-template-columns:1fr}.chat-panel{max-width:100%}.chat-form{grid-template-columns:1fr}.toolbar button{width:100%}canvas{height:300px}}
 
 .live-price-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .live-price-row:last-child{border-bottom:none}
 .live-price-row span{color:var(--muted);font-size:13px}
+
+/* TRAI Premium Design Phase 1 */
+.premium-hero{
+  position:relative;
+  overflow:hidden;
+}
+.premium-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 15% 22%,rgba(34,197,94,.22),transparent 28%),
+    radial-gradient(circle at 82% 18%,rgba(37,99,235,.28),transparent 30%),
+    radial-gradient(circle at 65% 80%,rgba(239,68,68,.12),transparent 28%);
+  pointer-events:none;
+}
+.premium-hero .hero-grid{
+  position:relative;
+  z-index:1;
+}
+.kicker{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  color:var(--green);
+  border:1px solid rgba(34,197,94,.35);
+  background:rgba(34,197,94,.08);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+.hero-slogan{
+  font-size:clamp(22px,3vw,34px);
+  line-height:1.16;
+  margin:0 0 18px;
+  color:#e5eefc;
+  font-weight:900;
+}
+.hero-slogan span{
+  color:var(--green);
+}
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:24px;
+}
+.hero-stat{
+  background:rgba(15,23,42,.88);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+}
+.hero-stat b{
+  display:block;
+  color:#fff;
+  font-size:20px;
+}
+.hero-stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+.feature-card{
+  position:relative;
+  overflow:hidden;
+  min-height:165px;
+}
+.feature-card::after{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  right:-45px;
+  top:-45px;
+  border-radius:50%;
+  background:rgba(34,197,94,.08);
+}
+.feature-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(34,197,94,.13);
+  border:1px solid rgba(34,197,94,.35);
+  margin-bottom:14px;
+  font-size:21px;
+}
+.showcase{
+  background:linear-gradient(135deg,rgba(17,24,39,.98),rgba(8,13,24,.98));
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:24px;
+  box-shadow:0 25px 90px rgba(0,0,0,.35);
+}
+.showcase img{
+  width:100%;
+  border-radius:24px;
+  border:1px solid var(--line);
+  background:#020617;
+}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:18px;
+  margin-bottom:22px;
+  flex-wrap:wrap;
+}
+.section-head p{
+  max-width:720px;
+  margin:0;
+}
+.contact-panel{
+  background:linear-gradient(135deg,rgba(17,24,39,.98),rgba(7,11,20,.98));
+  border:1px solid rgba(34,197,94,.35);
+  border-radius:24px;
+  padding:24px;
+}
+.contact-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+.cookie-banner{
+  position:fixed;
+  left:18px;
+  right:18px;
+  bottom:18px;
+  z-index:10000;
+  max-width:980px;
+  margin:auto;
+  background:rgba(17,24,39,.98);
+  border:1px solid var(--line);
+  box-shadow:0 25px 90px rgba(0,0,0,.55);
+  border-radius:22px;
+  padding:18px;
+  display:none;
+}
+.cookie-banner.active{
+  display:block;
+}
+.cookie-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.cookie-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.nav-actions a.navlink{
+  text-decoration:none;
+  display:inline-block;
+  padding:11px 13px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#1f2937;
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+}
+@media(max-width:850px){
+  .hero-stats{grid-template-columns:1fr}
+  .section-head{align-items:start}
+  .cookie-actions button{width:100%}
+}
+
 </style>
-<!-- Google Analytics -->
+<!-- Google Analytics / Consent Mode -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRVR76CH77"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied'
+});
 gtag('js', new Date());
-gtag('config', 'G-WRVR76CH77');
+if(localStorage.getItem('trai_cookie_consent') === 'accepted'){
+  gtag('consent', 'update', {
+    'analytics_storage': 'granted',
+    'ad_storage': 'granted',
+    'ad_user_data': 'granted',
+    'ad_personalization': 'granted'
+  });
+  gtag('config', 'G-WRVR76CH77');
+}
 </script>
 
 </head>
 <body>
-<header><div class="nav"><div class="brand"><img src="TRAI_Bilder/TRAI_Logo.png" alt="TRAI Logo"><span>TRAI Scanner</span></div><div class="nav-actions"><select id="languageSelect"><option value="de">Deutsch</option><option value="en">English</option><option value="tr">Türkçe</option><option value="es">Español</option><option value="fr">Français</option><option value="it">Italiano</option><option value="sq">Shqip</option><option value="ar">العربية</option></select><button class="secondary" onclick="scrollToId('home')">Home</button><button class="secondary" onclick="startScanner()">Scanner</button><button class="secondary" onclick="scrollToId('chart')">Chart</button><button class="secondary" onclick="scrollToId('community')">Chat</button></div></div></header>
-<section id="home" class="hero"><div class="hero-grid"><div><p class="eyebrow"><span data-i18n="heroEyebrow">KI Analyse · Aktien · Krypto · Derivate · Community</span></p><h1 data-i18n="heroTitle">TRAI Stock & Crypto Scanner</h1><p class="hero-text" data-i18n="heroSubtitle">Moderne Marktanalyse, eigene Chart-Technik, intelligente Scanner, Derivate-Rechner und Community in einer Plattform.</p><div class="hero-buttons"><button onclick="startScanner()"><span data-i18n="openScannerBtn">KI Scanner öffnen</span></button><button class="secondary" onclick="scrollToId('chart')"><span data-i18n="openChartBtn">Eigenen Chart öffnen</span></button><button class="secondary" onclick="scrollToId('community')">Community</button></div><div class="tags"><span class="tag"><span data-i18n="ownChartEngine">Eigene Chart Engine</span></span><span class="tag"><span data-i18n="googleAdsBeforeAI">Google Werbung vor KI Analyse</span></span><span class="tag"><span data-i18n="mobileReady">Android/iOS vorbereitet</span></span><span class="tag">Admin: ?admin=1</span></div></div><div><img class="hero-image" src="TRAI_Bilder/TRAI_BullBear.png" alt="TRAI Bull Bear Banner"></div></div></section>
+<header><div class="nav"><div class="brand"><img src="TRAI_Bilder/TRAI_Logo.png" alt="TRAI Logo"><span>TRAI Scanner</span></div><div class="nav-actions"><select id="languageSelect"><option value="de">Deutsch</option><option value="en">English</option><option value="tr">Türkçe</option><option value="es">Español</option><option value="fr">Français</option><option value="it">Italiano</option><option value="sq">Shqip</option><option value="ar">العربية</option></select><button class="secondary" onclick="scrollToId('home')">Home</button><button class="secondary" onclick="startScanner()">Scanner</button><button class="secondary" onclick="scrollToId('chart')">Chart</button><button class="secondary" onclick="scrollToId('community')">Chat</button><button class="secondary" onclick="scrollToId('contact')">Kontakt</button></div></div></header>
+<section id="home" class="hero premium-hero"><div class="hero-grid"><div><p class="kicker"><span data-i18n="heroEyebrow">KI Analyse · Aktien · Krypto · Derivate · Community</span></p><h1>TRAI Scanner</h1><p class="hero-slogan">Dein Vorteil.<br>Dein Algorithmus.<br><span>Dein Erfolg.</span></p><p class="hero-text">Moderne Marktanalyse mit eigenem Scanner, eigener Chart-Technik, Live-Krypto-Daten, Watchlist, Derivate-Rechner und Community.</p><div class="hero-buttons"><button onclick="startScanner()"><span data-i18n="openScannerBtn">KI Scanner öffnen</span></button><button class="secondary" onclick="scrollToId('chart')"><span data-i18n="openChartBtn">Eigenen Chart öffnen</span></button><button class="secondary" onclick="scrollToId('community')">Community</button></div><div class="hero-stats"><div class="hero-stat"><b>Live</b><span>BTC · ETH · SOL · XRP · BNB</span></div><div class="hero-stat"><b>Eigene</b><span>Chart-Engine ohne Plattform-Kopie</span></div><div class="hero-stat"><b>TRAI</b><span>Score & KI-System vorbereitet</span></div></div><div class="tags"><span class="tag">traiscanner.de</span><span class="tag">Keine Finanzberatung</span><span class="tag">Android/iOS vorbereitet</span><span class="tag">Admin: ?admin=1</span></div></div><div><img class="hero-image" src="TRAI_Bilder/TRAI_BullBear.png" alt="TRAI Bull Bear Banner"></div></div></section>
 <section><div class="panel" style="text-align:center"><p class="eyebrow">LIVE KI SCANNER</p><h2><span data-i18n="marketOpportunities">Marktchancen auf einen Blick</span></h2><p data-i18n="scannerIntro">Der Scanner zeigt Aktien- und Krypto-Signale übersichtlich an. Vor der Analyse kann eine Anzeige eingeblendet werden.</p><button onclick="startScanner()">KI Scanner öffnen</button></div></section>
 <section id="scannerDashboard"><div class="panel"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><p class="eyebrow">TRAI KI SCANNER</p><h2><span data-i18n="currentSignals">Aktuelle Long- und Short-Signale</span></h2><p><span data-i18n="demoUntilLive">Live-Krypto-Daten werden kostenlos geladen. Aktien bleiben bis zur API-Verbindung als Demo sichtbar.</span></p><div id="cryptoPrices" class="card" style="margin-top:15px"><p>Live-Krypto-Daten werden geladen...</p></div></div><button class="secondary" onclick="closeScanner()">Schließen</button></div><div id="scannerAd" class="ad-box"><b>Anzeige · Google Platzhalter</b><p>Hier kann später Google AdSense vor der KI-Ausgabe erscheinen.</p><button onclick="showScannerResults()">Weiter zur Analyse</button></div><div id="scannerResults" class="hidden"><div class="grid"><div class="card long"><h3>Top 3 LONG</h3><div id="longSignals"></div></div><div class="card short"><h3>Top 3 SHORT</h3><div id="shortSignals"></div></div></div></div></div></section>
 <section id="chart"><h2><span data-i18n="ownChartTitle">Eigener TRAI Chart</span></h2><p data-i18n="chartIntro">Eigene Canvas-Chart-Engine mit Candles, Werkzeugen und KI-Vorschlägen. Keine Kopie fremder Plattformen.</p><div class="toolbar"><button onclick="openChart()">Chart öffnen</button><button class="secondary" onclick="setTool('Trendlinie')">Trendlinie</button><button class="secondary" onclick="setTool('Support')">Support</button><button class="secondary" onclick="setTool('Resistance')">Resistance</button><button class="secondary" onclick="setTool('Zone')">Zone</button><button class="secondary" onclick="setTool('Notiz')">Notiz</button><button class="secondary" onclick="setTool('Messung')">Messung</button><button class="blue" onclick="chartAI()">Chart-KI</button><button class="secondary" onclick="saveChart()">Speichern</button><button class="secondary" onclick="window.print()">Drucken</button><button class="red" onclick="clearDrawings()">Löschen</button></div><div id="chartAd" class="ad-box hidden"><b>Anzeige</b><p>Ab mehreren Chart-Öffnungen kann hier Werbung erscheinen.</p><button onclick="unlockChart()">Chart weiter nutzen</button></div><div class="chart-box"><canvas id="traiChart" width="1100" height="420"></canvas><p id="activeTool">Aktives Tool: keines</p><p style="font-size:14px;color:var(--muted)">Werkzeug auswählen und anschließend in den Chart klicken.</p><div id="chartAIResult" class="card hidden"></div></div></section>
 <section><h2><span data-i18n="derivativesTitle">Derivate Rechner</span></h2><div class="grid"><div class="card"><input id="stockPrice" type="number" placeholder="Aktienkurs z.B. 100"> <input id="derivativePrice" type="number" placeholder="Derivat Preis z.B. 2.50"> <input id="leverage" type="number" placeholder="Hebel z.B. 5"> <button onclick="calculateDerivative()">Berechnen</button><p id="derivativeResult"></p></div><div class="card"><h3>Analyse vorbereitet</h3><p>Hebel, Risiko, Stop-Loss, Take-Profit und KI-Vorschläge sind vorbereitet und werden später mit echten Daten verbunden.</p></div></div></section>
 <section id="community"><h2><span data-i18n="communityTitle">Kostenloser TRAI Community Chat</span></h2><p><span data-i18n="communityIntro">Community-Chat mit Spam-Schutz, Schimpfwortfilter und integrierter Werbung.</span></p><div class="community-layout"><div class="chat-panel"><div id="chatBox" class="chat-window"></div><div id="chatAd" class="ad-box hidden"><b>Anzeige · Community</b><p>Kleine Werbefläche im Chatbereich.</p></div><div class="chat-form"><input id="chatName" placeholder="Name" value="Gast"><input id="chatInput" placeholder="Nachricht schreiben..."><button onclick="sendChat()">Senden</button></div><p id="chatWarning" style="color:var(--red)"></p></div><div class="card"><h3>Community Übersicht</h3><p>Platz für Trending Coins, aktive Diskussionen, News und Werbung.</p><div class="ad-box"><b>Google Anzeige</b><p>Werbeplatz für spätere Monetarisierung.</p></div><p><b>Trending:</b> BTC · ETH · NVDA · TSLA</p><p><b>Status:</b> Community Demo aktiv</p></div></div></section>
 <section><h2><span data-i18n="watchlistTitle">Watchlist & Speicherung</span></h2><div class="card"><input id="watchInput" placeholder="Symbol hinzufügen z.B. BTC oder NVDA"> <button onclick="addWatch()">Zur Watchlist</button><div id="watchList" style="margin-top:14px"></div></div></section>
-<section><h2><span data-i18n="previewTitle">TRAI Vorschau</span></h2><p><span data-i18n="previewIntro">Branding, Dashboard, Infografik und Plattform-Versionen.</span></p><div class="preview-grid"><div class="preview-card"><img src="TRAI_Bilder/TRAI_Dashboard.png" alt="TRAI Dashboard"><h3>Modernes Dashboard</h3></div><div class="preview-card"><img src="TRAI_Bilder/TRAI_Infografik.png" alt="TRAI Infografik"><h3>TRAI Infografik</h3></div><div class="preview-card"><img src="TRAI_Bilder/TRAI_Plattform_Version.png" alt="TRAI Plattform Version"><h3>Plattform Versionen</h3></div><div class="preview-card"><img src="TRAI_Bilder/TRAI_Overview.png" alt="TRAI Overview"><h3>TRAI Übersicht</h3></div></div></section>
-<section><h2><span data-i18n="mobileTitle">Mobile & App Vorbereitung</span></h2><div class="grid"><div class="card">Android vorbereitet</div><div class="card">iPhone / iOS vorbereitet</div><div class="card">PWA vorbereitet</div><div class="card">Windows & macOS vorbereitet</div></div></section>
+<section id="features"><div class="section-head"><div><p class="eyebrow">TRAI SYSTEM</p><h2>Eine Plattform. Alle Märkte. Überall.</h2></div><p>Das Design nutzt deine eigenen TRAI-Bilder und bleibt eigenständig: keine TradingView-Kopie, keine stock3-Kopie, sondern ein eigenes TRAI-Produkt.</p></div><div class="grid"><div class="card feature-card"><div class="feature-icon">🤖</div><h3>KI Scanner</h3><p>Long-/Short-Signale, Live-Krypto-Daten und vorbereitete TRAI-Bewertung.</p></div><div class="card feature-card"><div class="feature-icon">📈</div><h3>Eigener Chart</h3><p>Canvas-Chart mit Candles, Trendlinie, Support, Resistance und Chart-KI.</p></div><div class="card feature-card"><div class="feature-icon">⚡</div><h3>Derivate Rechner</h3><p>Hebel, Risiko und Szenario-Rechnung als eigener TRAI-Bereich.</p></div><div class="card feature-card"><div class="feature-icon">💬</div><h3>Community</h3><p>Chat, Spam-Schutz, Trading-Diskussionen und spätere Premium-Funktionen.</p></div></div></section><section><div class="showcase"><div class="section-head"><div><p class="eyebrow">INFOGRAFIK</p><h2>TRAI Vorteile auf einen Blick</h2></div><p>Scanner, Echtzeit-Analyse, Risiko-Management und Performance klar dargestellt.</p></div><img src="TRAI_Bilder/TRAI_Infografik.png" alt="TRAI Infografik"></div></section><section><div class="showcase"><div class="section-head"><div><p class="eyebrow">PLATTFORM</p><h2>Web, Desktop, Tablet und Smartphone vorbereitet</h2></div><p>TRAI wird als Web-Plattform aufgebaut und kann später als PWA/App erweitert werden.</p></div><img src="TRAI_Bilder/TRAI_Plattform_Version.png" alt="TRAI Plattform Version"></div></section><section><h2><span data-i18n="previewTitle">TRAI Vorschau</span></h2><p><span data-i18n="previewIntro">Branding, Dashboard, Infografik und Plattform-Versionen.</span></p><div class="preview-grid"><div class="preview-card"><img src="TRAI_Bilder/TRAI_Dashboard.png" alt="TRAI Dashboard"><h3>Modernes Dashboard</h3></div><div class="preview-card"><img src="TRAI_Bilder/TRAI_Overview.png" alt="TRAI Overview"><h3>TRAI Übersicht</h3></div></div></section>
+<section><h2><span data-i18n="mobileTitle">Mobile & App Vorbereitung</span></h2><div class="grid"><div class="card feature-card"><div class="feature-icon">🤖</div><h3>Android vorbereitet</h3><p>Später als PWA oder App nutzbar.</p></div><div class="card feature-card"><div class="feature-icon">📱</div><h3>iPhone / iOS vorbereitet</h3><p>Mobiles Layout für Smartphone und Tablet.</p></div><div class="card feature-card"><div class="feature-icon">🌐</div><h3>PWA vorbereitet</h3><p>Installierbare Web-App als nächster Ausbauschritt.</p></div><div class="card feature-card"><div class="feature-icon">💻</div><h3>Windows & macOS</h3><p>Desktop-optimierte Webplattform für große Bildschirme.</p></div></div></section><section id="contact"><div class="contact-panel"><p class="eyebrow">KONTAKT</p><h2>Kontakt zu TRAI Scanner</h2><p>Fragen, Feedback, technische Hinweise oder Kooperationen können an die offizielle Kontaktadresse gesendet werden.</p><div class="contact-actions"><a class="navlink" href="mailto:kontakt@traiscanner.de" style="text-decoration:none"><button>kontakt@traiscanner.de</button></a><button class="secondary" onclick="openLegal('impressum')">Impressum öffnen</button><button class="secondary" onclick="openLegal('datenschutz')">Datenschutz öffnen</button></div></div></section>
 <section><div class="card risk"><h3><span data-i18n="riskTitle">Wichtiger Hinweis</span></h3><p data-i18n="riskText">Keine Finanzberatung. Alle Inhalte dienen ausschließlich Informationszwecken. Aktien, Kryptowährungen und Derivate sind mit hohen Risiken verbunden.</p></div></section>
-<footer class="site-footer"><div class="footer-links"><button onclick="openLegal('impressum')">Impressum</button><span>·</span><button onclick="openLegal('datenschutz')">Datenschutz</button><span>·</span><button onclick="openLegal('haftung')">Haftungsausschluss</button><span>·</span><button onclick="openLegal('agb')">AGB</button></div><p>© 2026 TRAI Scanner · Alle Rechte vorbehalten</p><p>KI Scanner · Eigene Chart-Technik · Community · Werbung · Android/iOS/PWA</p></footer>
+<footer class="site-footer"><div class="footer-links"><button onclick="scrollToId('contact')">Kontakt</button><span>·</span><button onclick="openLegal('impressum')">Impressum</button><span>·</span><button onclick="openLegal('datenschutz')">Datenschutz</button><span>·</span><button onclick="openLegal('haftung')">Haftungsausschluss</button><span>·</span><button onclick="openLegal('agb')">AGB</button></div><p>© 2026 TRAI Scanner · Alle Rechte vorbehalten</p><p>KI Scanner · Eigene Chart-Technik · Community · Werbung · Android/iOS/PWA</p></footer>
+<div id="cookieBanner" class="cookie-banner">
+  <div class="cookie-row">
+    <div>
+      <h3 style="margin:0 0 6px">Cookie-Einstellungen</h3>
+      <p style="margin:0">TRAI Scanner verwendet notwendige lokale Speicherfunktionen und optional Google Analytics zur Verbesserung der Plattform.</p>
+    </div>
+    <div class="cookie-actions">
+      <button class="secondary" onclick="setCookieConsent('necessary')">Nur notwendige</button>
+      <button onclick="setCookieConsent('accepted')">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+
 <div id="legalModal" class="legal-modal hidden">
   <div class="legal-content">
     <button class="close-btn" onclick="closeLegal()">✕</button>
@@ -109,7 +318,7 @@ const isAdmin=new URLSearchParams(window.location.search).get('admin')==='1';con
 const translations={
   de:{
     heroEyebrow:"KI Analyse · Aktien · Krypto · Derivate · Community",
-    heroTitle:"TRAI Stock & Crypto Scanner",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"Moderne Marktanalyse, eigene Chart-Technik, intelligente Scanner, Derivate-Rechner und Community in einer Plattform.",
     openScannerBtn:"KI Scanner öffnen",
     openChartBtn:"Eigenen Chart öffnen",
@@ -135,7 +344,7 @@ const translations={
   },
   en:{
     heroEyebrow:"AI analysis · Stocks · Crypto · Derivatives · Community",
-    heroTitle:"TRAI Stock & Crypto Scanner",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"Modern market analysis, proprietary chart technology, intelligent scanners, derivatives calculator and community in one platform.",
     openScannerBtn:"Open AI scanner",
     openChartBtn:"Open custom chart",
@@ -161,7 +370,7 @@ const translations={
   },
   tr:{
     heroEyebrow:"Yapay zeka analizi · Hisseler · Kripto · Türevler · Topluluk",
-    heroTitle:"TRAI Hisse & Kripto Tarayıcı",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"Modern piyasa analizi, özel grafik teknolojisi, akıllı tarayıcılar, türev hesaplayıcı ve topluluk tek platformda.",
     openScannerBtn:"AI tarayıcıyı aç",
     openChartBtn:"Özel grafiği aç",
@@ -187,7 +396,7 @@ const translations={
   },
   es:{
     heroEyebrow:"Análisis IA · Acciones · Cripto · Derivados · Comunidad",
-    heroTitle:"TRAI Escáner de Acciones y Cripto",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"Análisis moderno de mercado, tecnología propia de gráficos, escáneres inteligentes, calculadora de derivados y comunidad en una plataforma.",
     openScannerBtn:"Abrir escáner IA",
     openChartBtn:"Abrir gráfico propio",
@@ -213,7 +422,7 @@ const translations={
   },
   fr:{
     heroEyebrow:"Analyse IA · Actions · Crypto · Dérivés · Communauté",
-    heroTitle:"TRAI Scanner Actions & Crypto",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"Analyse moderne des marchés, technologie graphique propre, scanners intelligents, calculateur de dérivés et communauté dans une plateforme.",
     openScannerBtn:"Ouvrir le scanner IA",
     openChartBtn:"Ouvrir le graphique",
@@ -239,7 +448,7 @@ const translations={
   },
   it:{
     heroEyebrow:"Analisi IA · Azioni · Crypto · Derivati · Community",
-    heroTitle:"TRAI Scanner Azioni & Crypto",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"Analisi moderna del mercato, tecnologia grafica propria, scanner intelligenti, calcolatore derivati e community in una piattaforma.",
     openScannerBtn:"Apri scanner IA",
     openChartBtn:"Apri grafico proprio",
@@ -265,7 +474,7 @@ const translations={
   },
   sq:{
     heroEyebrow:"Analizë AI · Aksione · Kripto · Derivate · Komunitet",
-    heroTitle:"TRAI Skaner Aksionesh & Kripto",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"Analizë moderne tregu, teknologji grafiku vetanake, skanerë inteligjentë, kalkulator derivatesh dhe komunitet në një platformë.",
     openScannerBtn:"Hap skanerin AI",
     openChartBtn:"Hap grafikun",
@@ -291,7 +500,7 @@ const translations={
   },
   ar:{
     heroEyebrow:"تحليل ذكي · أسهم · عملات رقمية · مشتقات · مجتمع",
-    heroTitle:"TRAI ماسح الأسهم والعملات الرقمية",
+    heroTitle:"TRAI Scanner",
     heroSubtitle:"تحليل سوق حديث، تقنية رسوم خاصة، ماسحات ذكية، حاسبة مشتقات ومجتمع في منصة واحدة.",
     openScannerBtn:"فتح ماسح الذكاء",
     openChartBtn:"فتح الرسم الخاص",
@@ -389,10 +598,36 @@ function updateScannerWithLiveCrypto(prices){
   if(results&&!results.classList.contains("hidden"))renderSignals();
 }
 
+
+function setCookieConsent(value){
+  localStorage.setItem('trai_cookie_consent', value);
+  const banner=document.getElementById('cookieBanner');
+  if(banner) banner.classList.remove('active');
+
+  if(value === 'accepted' && typeof gtag === 'function'){
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+    gtag('config', 'G-WRVR76CH77');
+  }
+}
+
+function initCookieBanner(){
+  const consent=localStorage.getItem('trai_cookie_consent');
+  const banner=document.getElementById('cookieBanner');
+  if(!consent && banner){
+    banner.classList.add('active');
+  }
+}
+initCookieBanner();
+
+
 loadLiveCryptoData();
 setInterval(loadLiveCryptoData,120000);
 </script>
 </body>
 </html>
-
 
