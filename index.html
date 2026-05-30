@@ -11,6 +11,15 @@
 .live-price-row:last-child{border-bottom:none}
 .live-price-row span{color:var(--muted);font-size:13px}
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WRVR76CH77"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WRVR76CH77');
+</script>
+
 </head>
 <body>
 <header><div class="nav"><div class="brand"><img src="TRAI_Bilder/TRAI_Logo.png" alt="TRAI Logo"><span>TRAI Scanner</span></div><div class="nav-actions"><select id="languageSelect"><option value="de">Deutsch</option><option value="en">English</option><option value="tr">Türkçe</option><option value="es">Español</option><option value="fr">Français</option><option value="it">Italiano</option><option value="sq">Shqip</option><option value="ar">العربية</option></select><button class="secondary" onclick="scrollToId('home')">Home</button><button class="secondary" onclick="startScanner()">Scanner</button><button class="secondary" onclick="scrollToId('chart')">Chart</button><button class="secondary" onclick="scrollToId('community')">Chat</button></div></div></header>
